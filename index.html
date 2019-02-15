@@ -7,29 +7,28 @@
     <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.1/css/all.css'>
 </head>
 <body>
-        <script src="https://apis.google.com/js/api.js"></script>
-        <script>
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script>
         function start() {
-          // 2. Initialize the JavaScript client library.
           gapi.client.init({
             'apiKey': 'AIzaSyArBQrznPzgD5aU_NKPWkorEaklGkIBouM',
-            // clientId and scope are optional if auth is not required.
             'clientId': '248150601049-fbibbrvjeqojdj45csgilhmj2vk7240e.apps.googleusercontent.com',
             'scope': 'profile',
-          }).then(function() {
-            // 3. Initialize and make the API request.
+          })
+          .then(function() {
             return gapi.client.request({
               'path': 'https://people.googleapis.com/v1/people/me?requestMask.includeField=person.names',
             })
-          }).then(function(response) {
+          })
+          .then(function(response) {
             console.log(response.result);
-          }, function(reason) {
-            console.log(reason);
+          }, 
+          function(reason) {
+            console.log(reason.details);
           });
         };
-        // 1. Load the JavaScript client library.
         gapi.load('client', start);
-        </script>
+    </script>
     <main>
 
     </main>
