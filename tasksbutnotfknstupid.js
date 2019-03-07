@@ -57,7 +57,7 @@
           scope: 'https://www.googleapis.com/auth/tasks'
         });
       },
-      logout: async function logout() {
+      googleTasksApi: async function logout() {
         await this.load();
   
         return new Promise(function (resolve, reject) {
@@ -68,12 +68,11 @@
   
             fetch('https://accounts.google.com/o/oauth2/revoke?token=' + accessToken, {
               mode: 'no-cors'
-            }).then(function (res) {
+            })
+            .then(function () {
               gapi.auth.signOut();
               resolve();
-            }).catch(function (error) {
-              return reject(error);
-            });
+            })
           }
         });
       },

@@ -1,11 +1,22 @@
 <!DOCTYPE html>
-<head>
+<html>
+  <head>
     <title>Google Tasks API Quickstart</title>
     <meta charset="utf-8" />
-</head>
-<body>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <script src="tasksbutnotfknstupid.js"></script>
-    <script async defer src="https://apis.google.com/js/api.js"></script>
-</body>
+  </head>
+  <body>
+    <p>Google Tasks API Quickstart</p>
+
+    <!--Add buttons to initiate auth sequence and sign out-->
+    <button id="authorize_button" style="display: none;">Authorize</button>
+    <button id="signout_button" style="display: none;">Sign Out</button>
+
+    <pre id="content" style="white-space: pre-wrap;"></pre>
+
+    <script src="app.js"></script>
+    <script async defer src="https://apis.google.com/js/api.js"
+      onload="this.onload=function(){};handleClientLoad()"
+      onreadystatechange="if (this.readyState === 'complete') this.onload()">
+    </script>
+  </body>
 </html>
