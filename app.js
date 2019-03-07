@@ -7,7 +7,7 @@
 
       // Authorization scopes required by the API; multiple scopes can be
       // included, separated by spaces.
-      var SCOPES = "https://www.googleapis.com/auth/tasks.readonly";
+      var SCOPES = "https://www.googleapis.com/auth/tasks";
 
       var authorizeButton = document.getElementById('authorize_button');
       var signoutButton = document.getElementById('signout_button');
@@ -42,34 +42,19 @@
       }
 
       /**
-       *  Sign in the user upon button click.
-       */
-      function signIn() {
-        gapi.auth2.getAuthInstance().signIn();
-      }
-      /**
-       *  Sign out the user upon button click.
-       */
-      function signOut() {
-gapi.auth2.getAuthInstance().signOut();
-      }
-
-      /**
        * Print task lists.
        */
-      function listTaskLists() {
-        gapi.client.tasks.tasklists.list({
-            'maxResults': 10
-        }).then(function(response) {
-          console.log('Task Lists:');
+      function listTaskLists(){
+        gapi.client.tasks.tasklists.list().then(function(response) {
           var taskLists = response.result.items;
+          $('pre').append('Task Lists:');
           if (taskLists && taskLists.length > 0) {
             for (var i = 0; i < taskLists.length; i++) {
               var taskList = taskLists[i];
-              console.log(taskList.title + ' (' + taskList.id + ')');
+              $('pre').append(taskList.title + ' (' + taskList.id + ')');
             }
-          }else {
-            console.log('No task lists found.');
+          } else {
+            $('pre').append('No task lists found.');
           }
         });
       }

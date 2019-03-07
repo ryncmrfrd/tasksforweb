@@ -1,22 +1,14 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Google Tasks API Quickstart</title>
-    <meta charset="utf-8" />
-  </head>
-  <body>
-    <p>Google Tasks API Quickstart</p>
-
-    <!--Add buttons to initiate auth sequence and sign out-->
-    <button onclick='signIn()' style="display: none;">Authorize</button>
-    <button onclick='signOut()' style="display: none;">Sign Out</button>
-
-    <pre id="content" style="white-space: pre-wrap;"></pre>
-
-    <script src="app.js"></script>
-    <script async defer src="https://apis.google.com/js/api.js"
-      onload="this.onload=function(){};clientLoad()"
-      onreadystatechange="if (this.readyState === 'complete') this.onload()">
-    </script>
-  </body>
+<head>
+  <title>Google Tasks API Quickstart</title>
+  <meta charset="utf-8" />
+</head>
+<body>
+  <p>Google Tasks API Quickstart</p>
+  <button onclick='gapi.auth2.getAuthInstance().signI();' style="display: none;">Authorize</button>
+  <button onclick='gapi.auth2.getAuthInstance().signOut();' style="display: none;">Sign Out</button>
+  <pre></pre>
+  <script src="human.js"></script>
+  <script async defer src="https://apis.google.com/js/api.js"></script>
+</body>
 </html>
