@@ -1,20 +1,13 @@
 <!DOCTYPE html>
 <head>
-    <title>Tasks</title>
-    <meta charset='UTF-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <link rel='stylesheet' href='style.css'>
-    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.1/css/all.css'>
+    <title>Google Tasks API Quickstart</title>
+    <meta charset="utf-8" />
 </head>
 <body>
-    <main>
-        <button onclick='googleTasksApi.signIn();'>Sign In</button>
-    </main>
-    <footer>
-        <p>Built by <a href='https://ryncmrfrd.me'>Ryan Comerford</a></p>
-    </footer>
-    <script async defer src="https://apis.google.com/js/api.js"></script>
-    <script src='tasks.js'></script>
-    <script src='app.js'></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="tasksbutnotfknstupid.js"></script>
+    <script src="app.js"></script>
+    <script async defer src="https://apis.google.com/js/api.js" onload="humanTasks.auth()">
+    </script>
 </body>
 </html>
