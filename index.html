@@ -9,12 +9,12 @@
   <header>
     <img src='bin\img\logo.png'>
     <div>
-        <button id='signIn' class='user-icon'></button>
-        <button id='signOut' class='user-icon'></button>
+        <button id='signIn' onclick='tasks.logIn()' class='user-icon'></button>
+        <button id='signOut' onclick='tasks.logOut()' class='user-icon'></button>
     </div>
   </header>
   <main>
-    <button onclick='$("#isSignedIn").text(tasks.isSignedIn());' style='margin: 0 auto;'>Am I logged in?</button>
+    <h2 onclick='$("#isSignedIn").text(tasks.isSignedIn());' style='margin: 0 auto;'>Am I logged in?</h2>
     <pre class="off-fourth" id="isSignedIn"></pre>
   </main>
   <footer>
