@@ -18,7 +18,10 @@ header img{
     height: 100px;
     margin-right: auto;
 }
-header .user-icon{
+#user-icon{
+    background: green;
+}
+.user-icon{
     height: 60px;
     width: 60px;
     border: none;
@@ -37,4 +40,24 @@ footer a{
     color: #4c8bf5;
     font-weight: bold;
     text-decoration: none;
+}
+/*task*/
+.task{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    border-bottom: 1px solid lightgrey;
+}
+.task *{margin: 8px 0;}
+.tasks-title-completed{
+    text-decoration: line-through;
+}
+.task-check{
+    margin: 0 auto 0 5px;
+    height: 25px;
+    width: 25px
+}
+.task-desc{
+    margin: 0 auto 0 10px;
 }

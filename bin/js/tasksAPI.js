@@ -9,17 +9,7 @@ var tasks = {
               clientId: client,
               discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/tasks/v1/rest"],
               scope: "https://www.googleapis.com/auth/tasks"
-            }).then(function(){
-                //other init stuff
-                $('#signIn').hide();
-                if (gapi.auth2.getAuthInstance().isSignedIn.get()){
-                  $('#signIn').hide();
-                  $('#signOut').show();
-                } else {
-                  $('#signOut').hide();
-                  $('#signIn').show();
-                }
-            });
+            })
         });
     },
     //[TESTED WORKING]
@@ -36,7 +26,7 @@ var tasks = {
     },
     getTaskLists: function(){
       gapi.client.tasks.tasklists.list().then(function(response) {
-        console.log(response.result.items);
+        return response.result.items;
       });
     },
     addTaskList: function(listTitle){
@@ -51,7 +41,7 @@ var tasks = {
     },
     getTasks: function(taskListId){
       gapi.client.tasks.tasks.list({tasklist: taskListId}).then(function(response) {
-        console.log(response.result.items);
+        return(response.result.items);
       });
     },
     addTask: function(taskListID, title, notes){
@@ -69,10 +59,4 @@ var tasks = {
         task: taskID
       });
     }
-}
-
-function yeet(elementID){
-  $('#'+elementID).text(
-    tasks.getTaskLists()
-  );
 }

@@ -9,21 +9,22 @@
   <header>
     <img src='bin\img\logo.png'>
     <div>
-        <button id='signIn' onclick='tasks.signIn()' class='user-icon'></button>
-        <button id='signOut' onclick='tasks.signOut()' class='user-icon'></button>
+        <label id='user-icon' class='user-icon'><div class='user-icon'></div></label>
+        <input type="checkbox" for='user-icon'>
+        <div>
+          <button onclick='tasks.signOut();window.location.href="/"'></button>
+        </div>
     </div>
   </header>
-  <main>
-    <h2 onclick='$("#isSignedIn").text(tasks.isSignedIn());' style='margin: 0 auto;'>Am I logged in?</h2>
-    <pre class="off-fourth" id="isSignedIn"></pre>
+  <main id='tasks'>
+    
   </main>
   <footer>
     <p>Built by <a href="http://ryncmrfrd.me">Ryan Comerford</a></p>
   </footer>
 
-  <script src='https://code.jquery.com/jquery-3.3.1.slim.min.js' integrity='sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=' crossorigin='anonymous'></script>
   <script src='bin\js\tasksAPI.js'></script>
-  <script async defer src='https://apis.google.com/js/api.js' onload="tasks.initialize('AIzaSyArBQrznPzgD5aU_NKPWkorEaklGkIBouM', '248150601049-fbibbrvjeqojdj45csgilhmj2vk7240e.apps.googleusercontent.com');"></script>
+  <script async defer src='https://apis.google.com/js/api.js' onload="runApp()"></script>
   <script src='bin\js\app.js'></script>
 </body>
 </html>
