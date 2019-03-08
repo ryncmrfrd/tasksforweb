@@ -1,33 +1,29 @@
 <!DOCTYPE html>
 <head>
   <title>Google Tasks Web App</title>
-  <meta charset="utf-8" />
-  <link rel="stylesheet" href="https://unpkg.com/picnic">
+  <meta charset='utf-8' />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
+  <link rel='stylesheet' href='bin\css\style.css'>
 </head>
 <body>
   <header>
-    <p>Google Tasks API Test</p>
+    <img src='bin\img\logo.png'>
+    <div>
+        <button id='signIn' class='user-icon'></button>
+        <button id='signOut' class='user-icon'></button>
+    </div>
   </header>
   <main>
-    <div class='flex three center'>
-      <button class='sixth' onclick='$("#isSignedIn").text( tasks.isSignedIn() );'>Are you signed in?</button>
-      <pre class='off-fourth' id='isSignedIn'></pre>
-    </div>
-    <h1>Reg</h1>
-    <div class='flex seven center'>
-      <button class='' onclick="tasks.initialize('AIzaSyArBQrznPzgD5aU_NKPWkorEaklGkIBouM', '248150601049-fbibbrvjeqojdj45csgilhmj2vk7240e.apps.googleusercontent.com');">Init</button>
-      <button class='off-sixth' id='signIn' onclick='tasks.signIn();'>Sign In</button>
-      <button class='off-sixth' id='signOut' onclick='tasks.signOut();'>Sign Out</button>  
-    </div>  
+    <button onclick='$("#isSignedIn").text(tasks.isSignedIn());' style='margin: 0 auto;'>Am I logged in?</button>
+    <pre class="off-fourth" id="isSignedIn"></pre>
   </main>
   <footer>
-
+    <p>Built by <a href="http://ryncmrfrd.me">Ryan Comerford</a></p>
   </footer>
 
-
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
-  <script src="tasksAPI.js"></script>
-  <script async defer src="https://apis.google.com/js/api.js" onload="tasks.initialize('AIzaSyArBQrznPzgD5aU_NKPWkorEaklGkIBouM', '248150601049-fbibbrvjeqojdj45csgilhmj2vk7240e.apps.googleusercontent.com');"></script>
-  <script src="app.js"></script>
+  <script src='https://code.jquery.com/jquery-3.3.1.slim.min.js' integrity='sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=' crossorigin='anonymous'></script>
+  <script src='bin\js\tasksAPI.js'></script>
+  <script async defer src='https://apis.google.com/js/api.js' onload="tasks.initialize('AIzaSyArBQrznPzgD5aU_NKPWkorEaklGkIBouM', '248150601049-fbibbrvjeqojdj45csgilhmj2vk7240e.apps.googleusercontent.com');"></script>
+  <script src='bin\js\app.js'></script>
 </body>
 </html>

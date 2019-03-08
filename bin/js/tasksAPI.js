@@ -36,8 +36,7 @@ var tasks = {
     },
     getTaskLists: function(){
       gapi.client.tasks.tasklists.list().then(function(response) {
-        console.log(response);
-        return response;
+        console.log(response.result.items);
       });
     },
     addTaskList: function(listTitle){
@@ -52,8 +51,7 @@ var tasks = {
     },
     getTasks: function(taskListId){
       gapi.client.tasks.tasks.list({tasklist: taskListId}).then(function(response) {
-        console.log(response);
-        return response;
+        console.log(response.result.items);
       });
     },
     addTask: function(taskListID, title, notes){
