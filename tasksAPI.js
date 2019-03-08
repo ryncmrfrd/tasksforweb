@@ -70,3 +70,9 @@ var tasks = {
       });
     }
 }
+
+function yeet(elementID){
+  $('#'+elementID).text(
+    tasks.getTaskLists()
+  );
+}
