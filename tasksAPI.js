@@ -53,16 +53,10 @@ var tasks = {
       }).items;
     },
     addTask: function(taskListID, title, notes){
-      var params = {};
-      if(title){
-        params.title = title;
-      }
-      else{
-        return false
-      }
-      if(notes){
-        params.notes = notes;
-      }
+      var params = {
+        title = title,
+        notes = notes
+      };
       gapi.client.tasks.tasks.insert(_extends({
         tasklist: taskListID
       }, params));
