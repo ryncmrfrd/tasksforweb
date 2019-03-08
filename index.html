@@ -5,10 +5,11 @@
 </head>
 <body>
   <p>Google Tasks API Quickstart</p>
-  <button onclick='gapi.auth2.getAuthInstance().signI();' style="display: none;">Authorize</button>
-  <button onclick='gapi.auth2.getAuthInstance().signOut();' style="display: none;">Sign Out</button>
+  <button onclick='tasks.signIn()' style="display: none;">Authorize</button>
+  <button onclick='tasks.signOut()' style="display: none;">Sign Out</button>
   <pre></pre>
-  <script src="human.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
+  <script src="tasksAPI.js"></script>
   <script async defer src="https://apis.google.com/js/api.js"></script>
 </body>
 </html>
