@@ -12,11 +12,11 @@ var tasks = {
             }).then(function(){
                 //other init stuff
                 if (gapi.auth2.getAuthInstance().isSignedIn.get()){
-                    authorizeButton.style.display = 'none';
-                    signoutButton.style.display = 'block';
+                  $('#signIn').hide();
+                  $('#signOut').show();
                 } else {
-                    authorizeButton.style.display = 'block';
-                    signoutButton.style.display = 'none';
+                  $('#signOut').hide();
+                  $('#signIn').show();
                 }
             });
         });
