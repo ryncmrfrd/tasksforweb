@@ -1,13 +1,24 @@
 <!DOCTYPE html>
 <head>
-  <title>Google Tasks API Quickstart</title>
+  <title>Google Tasks Web App</title>
   <meta charset="utf-8" />
+  <link rel="stylesheet" href="https://unpkg.com/picnic">
 </head>
 <body>
-  <p>Google Tasks API Quickstart</p>
-  <button id='signIn' onclick='tasks.signIn()'>Sign In</button>
-  <button id='signOut' onclick='tasks.signOut()'>Sign Out</button>
-  <pre></pre>
+  <header>
+    <p>Google Tasks API Test</p>
+  </header>
+  <main>
+    <pre id=''></pre>
+  
+    <button id='signIn' onclick="tasks.signIn(); tasks.initialize('AIzaSyArBQrznPzgD5aU_NKPWkorEaklGkIBouM', '248150601049-fbibbrvjeqojdj45csgilhmj2vk7240e.apps.googleusercontent.com');">Sign In</button>
+    <button id='signOut' onclick="tasks.signOut(); tasks.initialize('AIzaSyArBQrznPzgD5aU_NKPWkorEaklGkIBouM', '248150601049-fbibbrvjeqojdj45csgilhmj2vk7240e.apps.googleusercontent.com');">Sign Out</button>    
+  </main>
+  <footer>
+
+  </footer>
+
+
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
   <script src="tasksAPI.js"></script>
   <script async defer src="https://apis.google.com/js/api.js" onload="tasks.initialize('AIzaSyArBQrznPzgD5aU_NKPWkorEaklGkIBouM', '248150601049-fbibbrvjeqojdj45csgilhmj2vk7240e.apps.googleusercontent.com');"></script>

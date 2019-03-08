@@ -11,6 +11,7 @@ var tasks = {
               scope: "https://www.googleapis.com/auth/tasks"
             }).then(function(){
                 //other init stuff
+                $('#signIn').hide();
                 if (gapi.auth2.getAuthInstance().isSignedIn.get()){
                   $('#signIn').hide();
                   $('#signOut').show();
