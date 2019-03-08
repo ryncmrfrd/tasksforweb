@@ -1,3 +1,4 @@
+'use strict';
 var tasks = {
     //init
     initialize: function(key, client){
@@ -49,13 +50,13 @@ var tasks = {
     //tasks
     getTasks: function(taskListId){
       return gapi.client.tasks.tasks.list({
-        tasklist: taskList
+        tasklist: taskListId
       }).items;
     },
     addTask: function(taskListID, title, notes){
       var params = {
-        title = title,
-        notes = notes
+        title: title,
+        notes: notes
       };
       gapi.client.tasks.tasks.insert(_extends({
         tasklist: taskListID
@@ -63,8 +64,8 @@ var tasks = {
     },
     removeTask: function(taskListID, taskID){
       gapi.client.tasks.tasks.delete({
-        tasklist: taskListId,
-        task: taskId
+        tasklist: taskListID,
+        task: taskID
       });
     }
 }
