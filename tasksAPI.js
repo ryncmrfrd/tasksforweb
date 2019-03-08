@@ -29,7 +29,7 @@ var tasks = {
       gapi.auth2.getAuthInstance().signOut();
     },
     isSignedIn: function(){
-      return gapi.auth2.isSignedIn.get();
+      return gapi.auth2.getAuthInstance().isSignedIn.get();
     },
     //task lists
     getTaskLists: function(){
@@ -69,4 +69,4 @@ var tasks = {
       });
     }
 }
-//tasks.initialize('AIzaSyArBQrznPzgD5aU_NKPWkorEaklGkIBouM', 248150601049-fbibbrvjeqojdj45csgilhmj2vk7240e.apps.googleusercontent.com')
+//tasks.initialize('AIzaSyArBQrznPzgD5aU_NKPWkorEaklGkIBouM', '248150601049-fbibbrvjeqojdj45csgilhmj2vk7240e.apps.googleusercontent.com')
