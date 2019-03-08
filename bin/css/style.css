@@ -49,7 +49,9 @@ footer a{
     width: auto;
     border-bottom: 1px solid lightgrey;
 }
-.task *{margin: 8px 0;}
+.task h2{
+    margin: 5px auto 5px 0;
+}
 .tasks-title-completed{
     text-decoration: line-through;
 }

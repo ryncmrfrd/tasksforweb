@@ -1,5 +1,4 @@
 function runApp(){
-    tasks.initialize('AIzaSyArBQrznPzgD5aU_NKPWkorEaklGkIBouM', '248150601049-fbibbrvjeqojdj45csgilhmj2vk7240e.apps.googleusercontent.com');
     if(!tasks.isSignedIn()){
         tasks.signIn();
     }
@@ -11,7 +10,7 @@ function runApp(){
                 document.getElementById('tasks').innerHTML += 
                 '<div class="task">'+
                     '<button class="task-check"></button>'+
-                    '<h2 class="tasks-title' + tasksInList[i].status + '">' + tasksInList[i].title + '</h2>'+
+                    '<h2 class="tasks-title-' + tasksInList[i].status + '">' + tasksInList[i].title + '</h2>'+
                 '</div>';
             }
         }

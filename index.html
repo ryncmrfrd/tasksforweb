@@ -10,21 +10,20 @@
     <img src='bin\img\logo.png'>
     <div>
         <label id='user-icon' class='user-icon'><div class='user-icon'></div></label>
-        <input type="checkbox" for='user-icon'>
-        <div>
-          <button onclick='tasks.signOut();window.location.href="/"'></button>
-        </div>
     </div>
   </header>
   <main id='tasks'>
-    
+      <div class="task">
+          <button class="task-check"></button>
+          <h2 class="tasks-title-completed">' + tasksInList[i].title + '</h2>
+      </div>        
   </main>
   <footer>
     <p>Built by <a href="http://ryncmrfrd.me">Ryan Comerford</a></p>
   </footer>
 
   <script src='bin\js\tasksAPI.js'></script>
-  <script async defer src='https://apis.google.com/js/api.js' onload="runApp()"></script>
   <script src='bin\js\app.js'></script>
+  <script async defer src='https://apis.google.com/js/api.js' onload="tasks.initialize('AIzaSyArBQrznPzgD5aU_NKPWkorEaklGkIBouM', '248150601049-fbibbrvjeqojdj45csgilhmj2vk7240e.apps.googleusercontent.com');"></script>
 </body>
 </html>
