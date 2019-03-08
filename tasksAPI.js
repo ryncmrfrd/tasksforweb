@@ -34,7 +34,7 @@ var tasks = {
     //task lists
     getTaskLists: function(){
       gapi.client.tasks.tasklists.list().then(function(response) {
-        return response.result.items;
+        return response;
       });
     },
     addTaskList: function(listTitle){
@@ -51,7 +51,7 @@ var tasks = {
     getTasks: function(taskListId){
       return gapi.client.tasks.tasks.list({
         tasklist: taskListId
-      }).items;
+      });
     },
     addTask: function(taskListID, title, notes){
       var params = {
@@ -69,3 +69,4 @@ var tasks = {
       });
     }
 }
+//tasks.initialize('AIzaSyArBQrznPzgD5aU_NKPWkorEaklGkIBouM', 248150601049-fbibbrvjeqojdj45csgilhmj2vk7240e.apps.googleusercontent.com')
