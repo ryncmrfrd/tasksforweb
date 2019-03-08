@@ -9,10 +9,12 @@
     <p>Google Tasks API Test</p>
   </header>
   <main>
-    <pre id=''></pre>
+    <button onclick='$("#isSignedIn").text( tasks.isSignedIn() );'>Sign In</button>
+    <pre id='isSignedIn'></pre>
   
-    <button id='signIn' onclick="tasks.signIn(); tasks.initialize('AIzaSyArBQrznPzgD5aU_NKPWkorEaklGkIBouM', '248150601049-fbibbrvjeqojdj45csgilhmj2vk7240e.apps.googleusercontent.com');">Sign In</button>
-    <button id='signOut' onclick="tasks.signOut(); tasks.initialize('AIzaSyArBQrznPzgD5aU_NKPWkorEaklGkIBouM', '248150601049-fbibbrvjeqojdj45csgilhmj2vk7240e.apps.googleusercontent.com');">Sign Out</button>    
+    <button onclick="tasks.initialize('AIzaSyArBQrznPzgD5aU_NKPWkorEaklGkIBouM', '248150601049-fbibbrvjeqojdj45csgilhmj2vk7240e.apps.googleusercontent.com');">Init</button>
+    <button id='signIn' onclick='tasks.signIn();'>Sign In</button>
+    <button id='signOut' onclick='tasks.signOut();'>Sign Out</button>    
   </main>
   <footer>
 
