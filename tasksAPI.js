@@ -9,16 +9,17 @@ var tasks = {
               clientId: client,
               discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/tasks/v1/rest"],
               scope: "https://www.googleapis.com/auth/tasks"
-            })
+            }).then(function(){
+                //other init stuff
+                if (gapi.auth2.getAuthInstance().isSignedIn.get()){
+                  $('#signIn').hide();
+                  $('#signOut').show();
+                } else {
+                  $('#signOut').hide();
+                  $('#signIn').show();
+                }
+            });
         });
-        //other init stuff
-        if (gapi.auth2.getAuthInstance().isSignedIn.get()){
-          $('#signIn').hide();
-          $('#signOut').show();
-        } else {
-          $('#signOut').hide();
-          $('#signIn').show();
-        }
     },
     //oauth
     signIn: function(){
@@ -68,4 +69,3 @@ var tasks = {
       });
     }
 }
-//tasks.initialize('AIzaSyArBQrznPzgD5aU_NKPWkorEaklGkIBouM', '248150601049-fbibbrvjeqojdj45csgilhmj2vk7240e.apps.googleusercontent.com')
