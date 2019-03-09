@@ -1,6 +1,6 @@
 'use strict';
 var tasks = {
-    initialize: function(key, client, callBack){
+    initialize: function(key, client){
       gapi.load('client:auth2', function(){
           gapi.client.init({
             apiKey: key,

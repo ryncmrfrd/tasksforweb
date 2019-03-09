@@ -1,13 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
-html{
-    font-family: 'Roboto', sans-serif;
-}
-pre {
-    text-align: left;
-    padding: 0.3em 0.6em;
-    background: rgb(245, 245, 245);
-    border-radius: 0.2em;
-}
+html{font-family: 'Roboto', sans-serif;}
 header{
     display: flex;
     justify-content: flex-end;
@@ -17,9 +9,6 @@ header{
 header img{
     height: 100px;
     margin-right: auto;
-}
-#user-icon{
-    background: green;
 }
 .user-icon{
     height: 60px;
@@ -46,6 +35,11 @@ main{
     justify-content: center;
     margin-top: 15px;
 }
+#task-list-title{
+    color: #4c8bf5;
+    text-align: center;
+    margin-bottom: 30px;
+}
 #task-wrapper{
     margin: 0 25vw;
     width: 50vw;
@@ -53,22 +47,30 @@ main{
 /*task*/
 .task{
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    width: auto;
     border-bottom: 1px solid lightgrey;
+    padding: 10px;
 }
-.task h2{
-    margin: 5px auto 5px 0;
+.task .task-title{
+    font-weight: initial;
 }
-.tasks-title-completed{
-    text-decoration: line-through;
+.task .task-details *{
+    margin: 2px;
 }
-.task-check{
-    margin: 0 auto 0 5px;
-    height: 25px;
-    width: 25px
+.task .task-button{
+    transition: opacity 0.3s;
+    font-size: 1.4em;
+    color: #4c8bf5;
+    background: transparent;
+    border: none;
+    opacity: 0.7;
+    height: 30px; width: 30px;
+    margin: 0 20px 0 12px;
 }
-.task-desc{
-    margin: 0 auto 0 10px;
+.task .task-button:hover{
+    opacity: 1;
+}
+.task .task-desc{
+    color: grey;
 }

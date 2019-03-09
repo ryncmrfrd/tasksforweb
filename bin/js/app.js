@@ -8,18 +8,37 @@ function init(){
           scope: "https://www.googleapis.com/auth/tasks"
         }).then(function(){
             if(!gapi.auth2.getAuthInstance().isSignedIn.get()){
-                alert('not logged in')
+                alert('not logged in');
             }
-            showTasks()
+            showTaskLists();
         });
     })
 }
 
-function showTasks(){
+function showTaskLists(){
     gapi.client.tasks.tasklists.list().then(function(response) {
         var taskslists = response.result.items;
-        for(var i = 0;i <= taskslists.length; i++){
-            console.log(i);
+        if(taskslists.length = 1){
+            document.getElementById('task-list-title').innerText = taskslists[0].title
+            showTasks(taskslists[0].id);
+        }
+    });
+}
+
+function showTasks(listID){
+    gapi.client.tasks.tasks.list({tasklist: listID}).then(function(response) {
+        var tasksInList = response.result.items;
+        for(var i = 0; i < tasksInList.length; i++){
+            if(tasksInList[i].status == 'needsAction'){
+                document.getElementById('task-wrapper').innerHTML += 
+                '<div class="task">' +
+                    '<button class="task-button"><i class="fas fa-check"></i></button>' +
+                    '<div class="task-details">' +
+                        '<h2 class="task-title">' + tasksInList[i].title + '</h2>'
+                        '<p>test description</p>' +
+                    '</div>' +
+                '</div>';
+            }
         }
     });
 }
