@@ -1,26 +1,21 @@
 'use strict';
 var tasks = {
-    //[TESTED WORKING]
-    initialize: function(key, client){
-        if(!key || !client){return false}
-        gapi.load('client:auth2', function(){
-            gapi.client.init({
-              apiKey: key,
-              clientId: client,
-              discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/tasks/v1/rest"],
-              scope: "https://www.googleapis.com/auth/tasks"
-            })
-        });
+    initialize: function(key, client, callBack){
+      gapi.load('client:auth2', function(){
+          gapi.client.init({
+            apiKey: key,
+            clientId: client,
+            discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/tasks/v1/rest"],
+            scope: "https://www.googleapis.com/auth/tasks"
+          })
+      })
     },
-    //[TESTED WORKING]
     signIn: function(){
       gapi.auth2.getAuthInstance().signIn();
     },
-    //[TESTED WORKING]
     signOut: function(){
       gapi.auth2.getAuthInstance().signOut();
     },
-    //[TESTED WORKING]
     isSignedIn: function(){
       return gapi.auth2.getAuthInstance().isSignedIn.get();
     },

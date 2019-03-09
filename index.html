@@ -1,29 +1,28 @@
 <!DOCTYPE html>
 <head>
-  <title>Google Tasks Web App</title>
+  <title>Google Tasks Web App - Home</title>
   <meta charset='utf-8' />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
   <link rel='stylesheet' href='bin\css\style.css'>
 </head>
 <body>
-  <header>
-    <img src='bin\img\logo.png'>
-    <div>
-        <label id='user-icon' class='user-icon'><div class='user-icon'></div></label>
-    </div>
-  </header>
-  <main id='tasks'>
-      <div class="task">
-          <button class="task-check"></button>
-          <h2 class="tasks-title-completed">' + tasksInList[i].title + '</h2>
-      </div>        
-  </main>
-  <footer>
-    <p>Built by <a href="http://ryncmrfrd.me">Ryan Comerford</a></p>
-  </footer>
-
-  <script src='bin\js\tasksAPI.js'></script>
-  <script src='bin\js\app.js'></script>
-  <script async defer src='https://apis.google.com/js/api.js' onload="tasks.initialize('AIzaSyArBQrznPzgD5aU_NKPWkorEaklGkIBouM', '248150601049-fbibbrvjeqojdj45csgilhmj2vk7240e.apps.googleusercontent.com');"></script>
+  <a href="app.html">Go to App</a>
+  <script>
+    function init(){
+      gapi.load('client:auth2', function(){
+          gapi.client.init({
+            apiKey: 'AIzaSyArBQrznPzgD5aU_NKPWkorEaklGkIBouM',
+            clientId: '248150601049-fbibbrvjeqojdj45csgilhmj2vk7240e.apps.googleusercontent.com',
+            discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/tasks/v1/rest"],
+            scope: "https://www.googleapis.com/auth/tasks"
+          }).then(function(){
+              if(gapi.auth2.getAuthInstance().isSignedIn.get()){
+                  window.location.href = 'app.html'
+              }
+          });
+      })
+    }
+  </script>
+  <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};init()" onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
 </body>
 </html>

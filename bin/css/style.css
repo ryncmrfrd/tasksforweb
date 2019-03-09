@@ -41,6 +41,15 @@ footer a{
     font-weight: bold;
     text-decoration: none;
 }
+main{
+    display flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+#task-wrapper{
+    margin: 0 25vw;
+    width: 50vw;
+}
 /*task*/
 .task{
     display: flex;
