@@ -2,8 +2,9 @@
 <head>
   <title>Google Tasks Web App</title>
   <meta charset='utf-8' />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <link rel='icon' href='bin\favicon.png' type='image/x-icon'/>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css' />
+  <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.2/css/all.css' integrity='sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr' crossorigin='anonymous'>
   <link rel='stylesheet' href='bin\css\style.css'>
 </head>
 <body>
@@ -12,16 +13,21 @@
     <label id='user-icon' class='user-icon'><div class='user-icon'></div></label>
   </header>
   <main>
-    <h1 id='task-list-title'></h1>
+    <select id='task-list-title'>
+    </select>
     <section id='task-wrapper'>
 
     </section> 
   </main>
   <footer>
-    <p>Built by <a href="http://ryncmrfrd.me">Ryan Comerford</a></p>
+    <p>Built by <a href='http://ryncmrfrd.me'>Ryan Comerford</a></p>
   </footer>
 
+  <script src='bin\js\tasksAPI.js'></script>
   <script src='bin\js\app.js'></script>
-  <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};init()" onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
+  <script src='https://apis.google.com/js/api.js'
+    onload="this.onload=function(){};humanTasks.init(startApp);"
+    onreadystatechange="if(this.readyState==='complete'){this.onload()}">
+  </script>
 </body>
 </html>

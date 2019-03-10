@@ -1,57 +1,146 @@
-'use strict';
-var tasks = {
-    initialize: function(key, client){
-      gapi.load('client:auth2', function(){
-          gapi.client.init({
-            apiKey: key,
-            clientId: client,
-            discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/tasks/v1/rest"],
-            scope: "https://www.googleapis.com/auth/tasks"
-          })
+var humanTasks = {
+  isInitialised: false,
+  init: function(callback){
+    if(!callback){console.error('Callback function has not been provided');return}
+    gapi.load('client:auth2', function() {
+      gapi.client.init({
+        apiKey: 'AIzaSyArBQrznPzgD5aU_NKPWkorEaklGkIBouM',
+        clientId: '248150601049-fbibbrvjeqojdj45csgilhmj2vk7240e.apps.googleusercontent.com',
+        discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/tasks/v1/rest"],
+        scope: 'https://www.googleapis.com/auth/tasks'
+      }).then(function() {
+        humanTasks.isInitialised = true;
+        humanTasks.callback(callback)
       })
-    },
-    signIn: function(){
-      gapi.auth2.getAuthInstance().signIn();
-    },
-    signOut: function(){
-      gapi.auth2.getAuthInstance().signOut();
-    },
-    isSignedIn: function(){
+    });
+  },
+  auth: {
+    isLoggedIn: function(){
+      if(!humanTasks.isInitialised){console.error('Function "tasks.init()" must be called first'); return}
       return gapi.auth2.getAuthInstance().isSignedIn.get();
     },
-    getTaskLists: function(){
-      gapi.client.tasks.tasklists.list().then(function(response) {
-        return response.result.items;
+    login: function(callback){
+      if(!humanTasks.isInitialised){console.error('Function "tasks.init()" must be called first'); return}
+      gapi.auth2.getAuthInstance().signIn().then(function(){
+        if(callback){
+          humanTasks.callback(callback)
+        }
       });
     },
-    addTaskList: function(listTitle){
-      gapi.client.tasks.tasklists.insert({
-        title: listTitle
-      });
-    },
-    removeTaskList: function(listID){
-      gapi.client.tasks.tasklists.delete({
-        tasklist: listID
-      });
-    },
-    getTasks: function(taskListId){
-      gapi.client.tasks.tasks.list({tasklist: taskListId}).then(function(response) {
-        return(response.result.items);
-      });
-    },
-    addTask: function(taskListID, title, notes){
-      var params = {
-        title: title,
-        notes: notes
-      };
-      gapi.client.tasks.tasks.insert(_extends({
-        tasklist: taskListID
-      }, params));
-    },
-    removeTask: function(taskListID, taskID){
-      gapi.client.tasks.tasks.delete({
-        tasklist: taskListID,
-        task: taskID
+    logout: function(callback){
+      if(!humanTasks.isInitialised){console.error('Function "tasks.init()" must be called first'); return}
+      gapi.auth2.getAuthInstance().signOut().then(function(){
+        if(callback){
+          humanTasks.callback(callback)
+        }
       });
     }
+  },
+  taskLists: {
+    get: function(callback){
+      if(!humanTasks.isInitialised){console.error('Function "tasks.init()" must be called first'); return}
+      else if(arguments.length==0){console.error('Incorrect function parameters');return;}    
+      gapi.client.tasks.tasklists.list().then(function(response){
+        if(callback){
+          humanTasks.callback(callback, response.result.items)
+        }
+      });
+    },
+    add: function(title, callback){
+      if(!humanTasks.isInitialised){console.error('Function "tasks.init()" must be called first'); return}
+      else if(arguments.length==0){console.error('Incorrect function parameters');return;}    
+      gapi.client.tasks.tasklists.insert({
+        title: title
+      }).then(function(){
+        if(callback){
+          humanTasks.callback(callback)
+        }
+      });
+    },
+    remove: function(taskListId, callback){
+      if(!humanTasks.isInitialised){console.error('Function "tasks.init()" must be called first'); return}
+      else if(arguments.length==0){console.error('Incorrect function parameters');return;}    
+      gapi.client.tasks.tasklists.delete({
+        tasklist: taskListId
+      }).then(function(){
+        if(callback){
+          humanTasks.callback(callback)
+        }
+      });
+    },
+    edit: function(taskListId, title, callback){
+      if(!humanTasks.isInitialised){console.error('Function "tasks.init()" must be called first'); return}
+      else if(arguments.length==0){console.error('Incorrect function parameters');return;}    
+      gapi.client.tasks.tasklists.update({
+        tasklist: taskListId,
+        id: taskListId,
+        title: title
+      }).then(function(){
+        if(callback){
+          humanTasks.callback(callback)
+        }
+      });
+    }
+  },
+  tasks: {
+    get: function(taskListId, callback){
+      if(!humanTasks.isInitialised){console.error('Function "tasks.init()" must be called first'); return}
+      else if(arguments.length==0){console.error('Incorrect function parameters');return;}     
+      gapi.client.tasks.tasks.list({
+        tasklist: taskListId
+      }).then(function(response){
+        if(callback){
+          humanTasks.callback(callback, response.result.items)
+        }
+      });
+    },
+    add: function(taskListId, title, callback){
+      if(!humanTasks.isInitialised){console.error('Function "tasks.init()" must be called first'); return}
+      else if(arguments.length==0){console.error('Incorrect function parameters');return;}    
+      var params = {
+        'title': title
+      }
+      gapi.client.tasks.tasks.insert({
+        tasklist: taskListId
+      },params).then(function(){
+        if(callback){
+          humanTasks.callback(callback)
+        }
+      });
+    },
+    remove: function(taskListId, callback){
+      if(!humanTasks.isInitialised){console.error('Function "tasks.init()" must be called first'); return}
+      else if(arguments.length==0){console.error('Incorrect function parameters');return;}       
+      gapi.client.tasks.tasks.delete({
+        tasklist: taskListId,
+        task: taskId,
+        id: taskId
+      }).then(function(){
+        if(callback){
+          humanTasks.callback(callback)
+        }
+      });
+    },
+    edit: function(taskListId, title, callback){
+      if(!humanTasks.isInitialised){console.error('Function "tasks.init()" must be called first'); return}
+      else if(arguments.length==0){console.error('Incorrect function parameters');return;}    
+      var params = {
+        'title': title
+      }
+      gapi.client.tasks.tasks.insert({
+        tasklist: taskListId,
+        task: taskId,
+        id: taskId
+      },params).then(function(){
+        if(callback){
+          humanTasks.callback(callback)
+        }
+      });
+    } 
+  },
+  callback: function(callback, params){
+    if(arguments.length==0){console.error('Incorrect function parameters');return;}
+    if(!params){callback()}
+    else{callback(params);}
+  }
 }

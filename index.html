@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <head>
-  <title>Google Tasks Web App - Home</title>
+  <title>Google Tasks Web App</title>
   <meta charset='utf-8' />
+  <link rel="icon" href="bin\favicon.png" type="image/x-icon"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
 </head>
 <body>
   <a href="app.html">Go to App</a>
+  <p style='display: inline-block'> , </p>
+  <button onclick='gapi.auth2.getAuthInstance().signIn();'>Sign In</button>
+  <p style='display: inline-block'> or </p>
+  <button onclick='gapi.auth2.getAuthInstance().signOut();'>Sign Out</button>
   <script>
     function init(){
       gapi.load('client:auth2', function(){
-          gapi.client.init({
-            apiKey: 'AIzaSyArBQrznPzgD5aU_NKPWkorEaklGkIBouM',
-            clientId: '248150601049-fbibbrvjeqojdj45csgilhmj2vk7240e.apps.googleusercontent.com',
-            discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/tasks/v1/rest"],
-            scope: "https://www.googleapis.com/auth/tasks"
-          }).then(function(){
-              if(gapi.auth2.getAuthInstance().isSignedIn.get()){
-                  window.location.href = 'app.html'
-              }
-          });
+        gapi.client.init({
+          apiKey: 'AIzaSyArBQrznPzgD5aU_NKPWkorEaklGkIBouM',
+          clientId: '248150601049-fbibbrvjeqojdj45csgilhmj2vk7240e.apps.googleusercontent.com',
+          discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/tasks/v1/rest"],
+          scope: "https://www.googleapis.com/auth/tasks"
+        })
       })
     }
   </script>
