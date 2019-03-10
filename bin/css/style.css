@@ -58,7 +58,7 @@ main{
 .task .task-details *{
     margin: 2px;
 }
-.task .task-button{
+.task #task-button{
     transition: opacity 0.3s;
     font-size: 1.4em;
     color: #4c8bf5;

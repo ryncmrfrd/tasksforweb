@@ -12,6 +12,7 @@ function startApp(){
     else{
         taskLists()
     }
+
     function taskLists(){
         humanTasks.taskLists.get(function(taskLists){
             for(i = 0; i < taskLists.length; i++){
@@ -22,18 +23,25 @@ function startApp(){
             currentList = e.options[e.selectedIndex].value;
             humanTasks.tasks.get(currentList, function(tasks){
                 for(i = 0; i < tasks.length; i++){
-                    console.log()
                     if(tasks[i].status == 'needsAction'){
                         document.getElementById('task-wrapper').innerHTML += 
-                        '<div class="task">'+
-                            '<button class="task-button"><i class="fas fa-check"></i></button>'+
+                        '<div class="task" id="'+tasks[i].id+'">'+
+                            '<button id="task-button"><i class="fas fa-check"></i></button>'+
                             '<div class="task-details">'+
                                 '<h2 class="task-title">'+tasks[i].title+'</h2>'+
                             '</div>'+
                         '</div>';
                     }
                 }
+                //other misc things
+    document.getElementById('task-button').onclick = setElementAsCompleted;
             })
         });
+        
     }
+}
+
+function setElementAsCompleted(){
+    this.parentElement.id
+    humanTasks.tasks.
 }
