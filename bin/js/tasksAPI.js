@@ -94,15 +94,13 @@ var humanTasks = {
         }
       });
     },
-    add: function(taskListId, title, callback){
+    add: function(taskListId, params, callback){
       if(!humanTasks.isInitialised){console.error('Function "tasks.init()" must be called first'); return}
       else if(arguments.length==0){console.error('Incorrect function parameters');return;}    
-      var params = {
-        'title': title
-      }
       gapi.client.tasks.tasks.insert({
-        tasklist: taskListId
-      },params).then(function(){
+        tasklist: taskListId,
+        resource: params
+      }).then(function(){
         if(callback){
           humanTasks.callback(callback)
         }
@@ -121,22 +119,30 @@ var humanTasks = {
         }
       });
     },
-    edit: function(taskListId, title, callback){
+    edit: function(taskListId, taskId, params, callback){
       if(!humanTasks.isInitialised){console.error('Function "tasks.init()" must be called first'); return}
       else if(arguments.length==0){console.error('Incorrect function parameters');return;}    
-      var params = {
-        'title': title
-      }
-      gapi.client.tasks.tasks.insert({
+      gapi.client.tasks.tasks.patch({
         tasklist: taskListId,
         task: taskId,
-        id: taskId
-      },params).then(function(){
+        resource: params
+      }).then(function(response){
         if(callback){
-          humanTasks.callback(callback)
+          humanTasks.callback(callback, response)
         }
       });
-    } 
+    },
+    complete: function(taskListId, taskId, callback){
+      gapi.client.tasks.tasks.patch({
+        tasklist: taskListId,
+        task: taskId,
+        resource: {'status':'completed'}
+      }).then(function(response){
+        if(callback){
+          humanTasks.callback(callback, response)
+        }
+      });
+    }
   },
   callback: function(callback, params){
     if(arguments.length==0){console.error('Incorrect function parameters');return;}
