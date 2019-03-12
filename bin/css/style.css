@@ -3,8 +3,9 @@ html{font-family: 'Roboto', sans-serif;}
 /*<main>*/
 .taskListSelector{
     display: flex;
+    align-items: center;
     justify-content: center;
-    padding: 25px;
+    padding: 25px 25px 15px 25px;
 }
 #task-list-title{
     font-size: 1.5em;
@@ -20,7 +21,44 @@ html{font-family: 'Roboto', sans-serif;}
     margin: 0 auto;
     width: 60vw;
 }
-
+.addTask{
+    color: #4c8bf5;
+    background: transparent;
+    border: none;
+    font-size: 1.75em;
+    float: right;
+}
+.addTaskForm{
+    flex-direction: column;
+    justify-content: center;
+    z-index: 999;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+.addTaskForm h1{
+    color: #4c8bf5;
+    padding: 0 0 10px 0; margin: 0; text-align: center;
+}
+.addTaskForm p{
+    padding: 0; margin: 0;
+}
+.addTaskForm input{
+    padding: 0; margin: 5px; text-align: left;
+}
+.addTaskFormGrey{
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+}
 /*task*/
 .task{
     display: flex;
@@ -34,13 +72,6 @@ html{font-family: 'Roboto', sans-serif;}
 }
 .task .task-details *{
     margin: 2px;
-}
-.task .task-animation{
-    animation: example 1s;
-}
-@keyframes example {
-    from {background-color: red;}
-    to {background-color: yellow;}
 }
 .task #task-button{
     transition: opacity 0.3s;

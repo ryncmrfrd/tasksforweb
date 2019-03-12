@@ -17,8 +17,20 @@ function startApp(){
             }
             currentList = $('#task-list-title').val();
             updateTaskLists();
+            addTasks();
         });
-    }  
+    }
+}
+
+function addTasks(){
+    $('.addTask').click(function(){
+        $('.addTaskForm').css('display','flex');
+        $('.addTaskFormGrey').show()
+    })
+    $('.addTaskFormGrey').click(function(){
+        $('.addTaskForm').hide();
+        $('.addTaskFormGrey').hide()
+    })
 }
 
 function updateTaskLists(){
