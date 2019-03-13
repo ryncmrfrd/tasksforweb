@@ -8,14 +8,18 @@
   <link rel='stylesheet' href='bin\css\style.css'>
 </head>
 <body>
-<div class='addTaskForm' style='display: none;'>
-  <h1>Add Task</h1>
-  <p>Task Title:</p>
-  <input type="text" id="formTaskDetails">
-  <p>Task notes:</p>
-  <input type="text" id="formTaskNotes" disabled>
-  <button style='margin-top: 10px;'>Create Task</button>
-</div>
+    <div class='addTaskForm' style='display: none;'>
+        <h1 class='addTaskH1'>Add Task</h1>
+        <div class='addTaskTitle'>
+          <p>Task Title:</p>
+          <input type="text" id="formTaskTitle">
+        </div>
+        <div class='addTaskNotes'>
+            <p>Task Notes:</p>
+            <input type="text" id="formTaskDetails" disabled>
+        </div>
+        <button class='addTaskButton'>Create Task</button>
+      </div>
 <div class='addTaskFormGrey' style='display: none;'></div>
   <nav class='taskListSelector'>
     <select id='task-list-title'>

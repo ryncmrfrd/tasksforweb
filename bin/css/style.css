@@ -28,37 +28,6 @@ html{font-family: 'Roboto', sans-serif;}
     font-size: 1.75em;
     float: right;
 }
-.addTaskForm{
-    flex-direction: column;
-    justify-content: center;
-    z-index: 999;
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-}
-.addTaskForm h1{
-    color: #4c8bf5;
-    padding: 0 0 10px 0; margin: 0; text-align: center;
-}
-.addTaskForm p{
-    padding: 0; margin: 0;
-}
-.addTaskForm input{
-    padding: 0; margin: 5px; text-align: left;
-}
-.addTaskFormGrey{
-    height: 100vh;
-    width: 100vw;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: rgba(0, 0, 0, 0.5);
-}
 /*task*/
 .task{
     display: flex;
@@ -85,3 +54,55 @@ html{font-family: 'Roboto', sans-serif;}
 .task .task-desc{
     color: grey;
 }
+/*add task form*/
+.addTaskForm{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    z-index: 999;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 10px 25px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  }
+  .addTaskForm p{
+    margin-bottom: 8px;
+  }
+  .addTaskForm input{
+    padding: 5px;
+    border: 1px solid grey;
+  }
+  .addTaskForm input:focus{
+    border: 1px solid #4c8bf5;
+  }
+  .addTaskForm input:disabled{
+    border: 1px solid grey;
+    background: white;
+    opacity: 0.5;
+  }
+  .addTaskForm .addTaskH1{
+    margin: 5px 0 0 0;
+    text-align: center;
+    color: #4c8bf5;
+  }
+  .addTaskForm .addTaskButton{
+    border: none;
+    background: #4c8bf5;
+    color: white;
+    padding: 7px 15px;
+    border-radius: 5px;
+    text-align: center;
+    margin: 15px auto 10px auto;
+  }
+  .addTaskFormGrey{
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.4);
+  }
