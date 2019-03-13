@@ -1,43 +1,67 @@
+/*
+      A properly documented and not at all overcomplicated 
+    script by https://ryncmrfrd.me. It's downhill from here.
+*/
+
+//global variable for currently selected tasklist
 var currentList;
 $('#task-list-title').change(function (){
-    $('#task-wrapper section').hide();
-    $('#task-wrapper section.'+currentList).show();
     currentList = $(this).val();
+    $('section').hide();
+    $('section#'+currentList).show();
 });
 
+//on gapi load script
 function startApp(){
+    //is user has previously logged in
     if(!humanTasks.auth.isLoggedIn()){humanTasks.auth.login(getTaskLists());}
     else{getTaskLists()}
     function getTaskLists(){
         humanTasks.taskLists.get(function(taskLists){
-            for(i = 0; i < taskLists.length; i++){
+            for(var i=0; i < taskLists.length; i++){
+                //append different task wrap <section>s to <main>
+                $('#task-wrapper').append('<section id="'+taskLists[i].id+'"></section>');
+                //append options to dropdown
                 $('#task-list-title').append('<option value="'+taskLists[i].id+'">'+taskLists[i].title+'</option>');
-                $('#task-wrapper').append('<section class="'+taskLists[i].id+'"></section>');
-            }
-            currentList = $('#task-list-title').val();
-            console.log($('#task-list-title option').length)
-            for(var i = 0; i < $('#task-list-title option').length; i++){
-                console.log('skrrt')
-                console.log(taskListID)
-                var taskListID = $('#task-list-title option').children().prevObject[i].value;
-                humanTasks.tasks.get(taskListID, function(tasks){
-                    $('#task-wrapper section').empty();
-                    for(i = 0; i < tasks.length; i++){
-                        if(tasks[i].status == 'needsAction'){
-                            $('#task-wrapper section.'+taskListID).append(
-                                '<div class="task" id="'+tasks[i].id+'">'+
-                                    '<button onclick="setElementAsCompleted(this)" id="task-button"><i class="fas fa-check"></i></button>'+
-                                    '<div class="task-details">'+
-                                        '<h2 contenteditable="true" class="task-title">'+tasks[i].title+'</h2>'+
-                                    '</div>'+
-                                '</div>'
-                            );
+                currentList = $('#task-list-title').val()
+                //bodge for accessing "i" variable from nested for loops
+                getTasksFromList(taskLists[i].id);
+                function getTasksFromList(x){
+                    humanTasks.tasks.get(x,function(tasks){
+                        for(var i=0; i < tasks.length; i++){
+                            if(tasks[i].status == 'needsAction'){
+                                //add all the tasks to their respective tasklist section
+                                $('#task-wrapper section#'+x).append(
+                                    '<div class="task" id="'+tasks[i].id+'">'+
+                                        '<button onclick="setElementAsCompleted(this)" id="task-button"><i class="fas fa-check"></i></button>'+
+                                        '<div class="task-details">'+
+                                            '<h2 contenteditable="true" class="task-title">'+tasks[i].title+'</h2>'+
+                                        '</div>'+
+                                    '</div>'
+                                );
+                            }
                         }
-                    }
-                    allowTaskEdits();
-                })
+                        //allow task titles to be edited using the html contenteditable property
+                        var taskTitleEdits;
+                        $('.task-title').focusin(function(){
+                            taskTitleEdits = this.innerText;
+                        });
+                        $('.task-title').focusout(function(){
+                            if(taskTitleEdits != this.innerText){
+                                var taskID = this.parentNode.parentNode.id;
+                                var params = {'title':this.innerText}
+                                humanTasks.tasks.edit(currentList, taskID, params, function(){
+                                    console.log('success')
+                                });
+                            }
+
+                        });
+                    });
+                }
             }
-            addTasks();
+            //switch to first tasklist section
+            $('section').hide();
+            $('section#'+taskLists[0].id).show();
         });
     }
 }
@@ -52,39 +76,19 @@ function addTasks(){
         $('.addTaskFormGrey').hide()
     })
     $('.addTaskButton').click(function(){
-        var taskTitle = $('#formTaskTitle').val();
-        var params = {
-            'title':taskTitle
-        }
+        var params = {'title': $('#formTaskTitle').val()}
         humanTasks.tasks.add(currentList,params,function(){
-            updateTaskLists()
+            //do something idk what yet
         })
         $('.addTaskForm').hide();
         $('.addTaskFormGrey').hide()
     })
 }
 
-function updateTaskLists(){
-    humanTasks.tasks.get(currentList, function(tasks){
-            if(tasks==undefined){return;}
-            $('#task-wrapper section').empty();
-            for(i = 0; i < tasks.length; i++){
-                if(tasks[i].status == 'needsAction'){
-                    $('#task-wrapper section.'+currentList).append(
-                        '<div class="task" id="'+tasks[i].id+'">'+
-                            '<button onclick="setElementAsCompleted(this)" id="task-button"><i class="fas fa-check"></i></button>'+
-                            '<div class="task-details">'+
-                                '<h2 contenteditable="true" class="task-title">'+tasks[i].title+'</h2>'+
-                            '</div>'+
-                        '</div>'
-                    );
-                }
-            }
-        })
-    }
 
 function allowTaskEdits(){
     $('.task-title').focusout(function(){
+        console.log('yeet')
         var taskID = this.parentNode.parentNode.id;
         var params = {'title' : this.innerText}
         humanTasks.tasks.edit(currentList, taskID, params)
@@ -97,3 +101,15 @@ function setElementAsCompleted(x){
         $('#'+thisID).remove();
     })
 }
+
+/*$('#task-wrapper').append('<section id="'+taskLists[x].id+'"></section>');
+$('#task-list-title').append('<option value="'+taskLists[x].id+'">'+taskLists[x].title+'</option>');
+
+                            $('#task-wrapper section#'+taskLists[x].id).append(
+                                '<div class="task" id="'+tasks[i].id+'">'+
+                                    '<button onclick="setElementAsCompleted(this)" id="task-button"><i class="fas fa-check"></i></button>'+
+                                    '<div class="task-details">'+
+                                        '<h2 contenteditable="true" class="task-title">'+tasks[i].title+'</h2>'+
+                                    '</div>'+
+                                '</div>'
+                            )*/
