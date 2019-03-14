@@ -100,9 +100,9 @@ var humanTasks = {
       gapi.client.tasks.tasks.insert({
         tasklist: taskListId,
         resource: params
-      }).then(function(){
+      }).then(function(response){
         if(callback){
-          humanTasks.callback(callback)
+          humanTasks.callback(callback, response)
         }
       });
     },

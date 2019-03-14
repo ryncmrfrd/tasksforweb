@@ -37,10 +37,12 @@ function startApp(){
                                         '<div class="task-details">'+
                                             '<h2 contenteditable="true" class="task-title">'+tasks[i].title+'</h2>'+
                                         '</div>'+
+                                        '<button onclick="deleteElement(this)" id="delete-task-button"><i class="fas fa-times"></i></button>'+
                                     '</div>'
                                 );
                             }
                         }
+                        $('.user-icon').css('background', 'url(' + gapi.auth2.getAuthInstance().currentUser.Ab.w3.Paa + ') center/cover')
                         //allow task titles to be edited using the html contenteditable property
                         var taskTitleEdits;
                         $('.task-title').focusin(function(){
@@ -50,11 +52,8 @@ function startApp(){
                             if(taskTitleEdits != this.innerText){
                                 var taskID = this.parentNode.parentNode.id;
                                 var params = {'title':this.innerText}
-                                humanTasks.tasks.edit(currentList, taskID, params, function(){
-                                    console.log('success')
-                                });
+                                humanTasks.tasks.edit(currentList, taskID, params);
                             }
-
                         });
                     });
                 }
@@ -62,39 +61,45 @@ function startApp(){
             //switch to first tasklist section
             $('section').hide();
             $('section#'+taskLists[0].id).show();
+            //allow user to add tasks
+            addTasksButton();
         });
     }
 }
 
-function addTasks(){
+function addTasksButton(){
+    //when the add tasks button is clicked 
     $('.addTask').click(function(){
         $('.addTaskForm').css('display','flex');
         $('.addTaskFormGrey').show()
     })
+    //when the add tasks form is active and its clicked outside of
     $('.addTaskFormGrey').click(function(){
         $('.addTaskForm').hide();
         $('.addTaskFormGrey').hide()
     })
+    //when the form submit button is clicked
     $('.addTaskButton').click(function(){
+        //add task to current list
         var params = {'title': $('#formTaskTitle').val()}
-        humanTasks.tasks.add(currentList,params,function(){
-            //do something idk what yet
+        humanTasks.tasks.add(currentList,params,function(task){
+            $('#task-wrapper section#'+currentList).prepend(
+                '<div class="task" id="'+task.result.id+'">'+
+                    '<button onclick="setElementAsCompleted(this)" id="task-button"><i class="fas fa-check"></i></button>'+
+                    '<div class="task-details">'+
+                        '<h2 contenteditable="true" class="task-title">'+task.result.title+'</h2>'+
+                    '</div>'+
+                    '<button onclick="deleteElement(this)" id="delete-task-button"><i class="fas fa-times"></i></button>'+
+                '</div>'
+            );  
         })
+        //close the add tasks page
         $('.addTaskForm').hide();
         $('.addTaskFormGrey').hide()
     })
 }
 
-
-function allowTaskEdits(){
-    $('.task-title').focusout(function(){
-        console.log('yeet')
-        var taskID = this.parentNode.parentNode.id;
-        var params = {'title' : this.innerText}
-        humanTasks.tasks.edit(currentList, taskID, params)
-    });
-}
-
+//set selected task to "completed"
 function setElementAsCompleted(x){
     var thisID = x.parentNode.id;
     humanTasks.tasks.complete(currentList, thisID,function(){
@@ -102,14 +107,10 @@ function setElementAsCompleted(x){
     })
 }
 
-/*$('#task-wrapper').append('<section id="'+taskLists[x].id+'"></section>');
-$('#task-list-title').append('<option value="'+taskLists[x].id+'">'+taskLists[x].title+'</option>');
-
-                            $('#task-wrapper section#'+taskLists[x].id).append(
-                                '<div class="task" id="'+tasks[i].id+'">'+
-                                    '<button onclick="setElementAsCompleted(this)" id="task-button"><i class="fas fa-check"></i></button>'+
-                                    '<div class="task-details">'+
-                                        '<h2 contenteditable="true" class="task-title">'+tasks[i].title+'</h2>'+
-                                    '</div>'+
-                                '</div>'
-                            )*/
+//set selected task to "deleted"
+function deleteElement(x){
+    var thisID = x.parentNode.id;
+    var params = {'deleted':'true'}
+    $('#'+thisID).remove();
+    humanTasks.tasks.edit(currentList, thisID, params)
+}

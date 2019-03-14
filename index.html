@@ -19,7 +19,15 @@
             <input type="text" id="formTaskDetails" disabled>
         </div>
         <button class='addTaskButton'>Create Task</button>
+    </div>
+
+    <header>
+      <img src='bin\img\logo.png'>
+      <div>
+          <button class='user-icon'></button>
       </div>
+    </header>
+
 <div class='addTaskFormGrey' style='display: none;'></div>
   <nav class='taskListSelector'>
     <select id='task-list-title'>
@@ -39,7 +47,7 @@
   <script src='bin\js\tasksAPI.js'></script>
   <script src='bin\js\app.js'></script>
   <script src='https://apis.google.com/js/api.js'
-    onload="this.onload=function(){};humanTasks.init(startApp);"
+    onload="this.onload=function(){};humanTasks.init(function(asd){console.log(asd);startApp()});"
     onreadystatechange="if(this.readyState==='complete'){this.onload()}">
   </script>
 </body>

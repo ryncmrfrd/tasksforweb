@@ -1,11 +1,32 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
 html{font-family: 'Roboto', sans-serif;}
+/*<header>*/
+header{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 5px 20px;
+}
+header img{
+  height: 100px;
+  margin-right: auto;
+}
+#user-icon{
+  background: green;
+}
+.user-icon{
+  height: 60px;
+  width: 60px;
+  border: none;
+  border-radius: 50%;
+  margin: 0 5px 0 0;
+}
 /*<main>*/
 .taskListSelector{
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 25px 25px 15px 25px;
+    padding: 0 25px 15px 25px;
 }
 #task-list-title{
     font-size: 1.5em;
@@ -44,12 +65,29 @@ html{font-family: 'Roboto', sans-serif;}
 }
 .task #task-button{
     transition: opacity 0.3s;
+    opacity: 0.6;
     font-size: 1.4em;
     color: #4c8bf5;
     background: transparent;
     border: none;
     height: 30px; width: 30px;
     margin: 0 20px 0 12px;
+}
+.task #task-button:hover{
+  opacity: 1;
+}
+.task #delete-task-button{
+  transition: opacity 0.3s;
+  opacity: 0;
+  font-size: 1.25em;
+    margin-left: auto;
+    color: red;
+    background: transparent;
+    border: none;
+    height: 30px; width: 30px;
+}
+.task #delete-task-button:hover{
+  opacity: 1;
 }
 .task .task-desc{
     color: grey;
