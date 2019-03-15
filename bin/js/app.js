@@ -43,6 +43,8 @@ function startApp(){
                             }
                         }
                         $('.user-icon').css('background', 'url(' + gapi.auth2.getAuthInstance().currentUser.Ab.w3.Paa + ') center/cover')
+                        $('.userName').text(gapi.auth2.getAuthInstance().currentUser.Ab.w3.ig);
+
                         //allow task titles to be edited using the html contenteditable property
                         var taskTitleEdits;
                         $('.task-title').focusin(function(){
@@ -63,6 +65,8 @@ function startApp(){
             $('section#'+taskLists[0].id).show();
             //allow user to add tasks
             addTasksButton();
+            //FINISH LOADING SCREEN
+            loading_screen.finish();
         });
     }
 }
@@ -101,16 +105,12 @@ function addTasksButton(){
 
 //set selected task to "completed"
 function setElementAsCompleted(x){
-    var thisID = x.parentNode.id;
-    humanTasks.tasks.complete(currentList, thisID,function(){
-        $('#'+thisID).remove();
-    })
+    humanTasks.tasks.complete(currentList, x.parentNode.id)
+    $('#'+x.parentNode.id).remove();
 }
 
 //set selected task to "deleted"
 function deleteElement(x){
-    var thisID = x.parentNode.id;
-    var params = {'deleted':'true'}
-    $('#'+thisID).remove();
-    humanTasks.tasks.edit(currentList, thisID, params)
+    humanTasks.tasks.edit(currentList, x.parentNode.id, {'deleted':'true'})
+    $('#'+x.parentNode.id).remove();
 }

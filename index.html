@@ -6,8 +6,13 @@
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css' />
   <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.2/css/all.css' integrity='sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr' crossorigin='anonymous'>
   <link rel='stylesheet' href='bin\css\style.css'>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/please-wait/0.0.5/please-wait.min.css" />
 </head>
 <body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/please-wait/0.0.5/please-wait.min.js"></script>
+  <script>var loading_screen=pleaseWait({logo:'',backgroundColor:'#ffffff',loadingHtml: '<img class="loader" src="bin/img/logo.png">'});</script>
+
     <div class='addTaskForm' style='display: none;'>
         <h1 class='addTaskH1'>Add Task</h1>
         <div class='addTaskTitle'>
@@ -23,8 +28,9 @@
 
     <header>
       <img src='bin\img\logo.png'>
-      <div>
-          <button class='user-icon'></button>
+      <div class='logoutForm' style='position: absolute; top: 20px; right: 10px;'>
+        <button onclick='$(".logoutButton").toggle()' class='user-icon'></button>
+        <button onclick='humanTasks.auth.logout()' class='logoutButton'>Log Out</button>
       </div>
     </header>
 
