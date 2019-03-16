@@ -14,7 +14,7 @@ $('#task-list-title').change(function (){
 //on gapi load script
 function startApp(){
     //is user has previously logged in
-    if(!humanTasks.auth.isLoggedIn()){humanTasks.auth.login(getTaskLists());}
+    if(!humanTasks.auth.isLoggedIn()){window.location.href='login'}
     else{getTaskLists()}
     function getTaskLists(){
         humanTasks.taskLists.get(function(taskLists){
@@ -42,8 +42,8 @@ function startApp(){
                                 );
                             }
                         }
+                        //get user icon and make the circle it. words are fun
                         $('.user-icon').css('background', 'url(' + gapi.auth2.getAuthInstance().currentUser.Ab.w3.Paa + ') center/cover')
-                        $('.userName').text(gapi.auth2.getAuthInstance().currentUser.Ab.w3.ig);
 
                         //allow task titles to be edited using the html contenteditable property
                         var taskTitleEdits;
@@ -65,8 +65,10 @@ function startApp(){
             $('section#'+taskLists[0].id).show();
             //allow user to add tasks
             addTasksButton();
-            //FINISH LOADING SCREEN
-            loading_screen.finish();
+            //FINISH "LOADING SCREEN"
+            $('.taskListSelector').fadeIn('slow');
+            $('#task-wrapper').fadeIn('slow');
+            $('header').fadeIn('slow');
         });
     }
 }
