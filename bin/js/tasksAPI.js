@@ -4,8 +4,8 @@ var humanTasks = {
     if(!callback){console.error('Callback function has not been provided');return}
     gapi.load('client:auth2', function() {
       gapi.client.init({
-        apiKey: 'AIzaSyCOxTZNOhqV2DI5YgLtQa6pJPv2ScGPnDg',
-        clientId: '494992094972-2sl8mieedk91uocjiakfms9d3uco3m70.apps.googleusercontent.com',
+        apiKey: 'AIzaSyArBQrznPzgD5aU_NKPWkorEaklGkIBouM',
+        clientId: '248150601049-fbibbrvjeqojdj45csgilhmj2vk7240e.apps.googleusercontent.com',
         discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/tasks/v1/rest"],
         scope: 'https://www.googleapis.com/auth/tasks'
       }).then(function() {
