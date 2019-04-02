@@ -1,5 +1,5 @@
 /*
-     A properly documented and not at all overcomplicated 
+     A "properly documented" and not at all overcomplicated 
     script by https://ryncmrfrd.me. It's downhill from here.
 */
 var humanTasks = {

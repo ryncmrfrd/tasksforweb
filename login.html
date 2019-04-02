@@ -5,21 +5,8 @@
   <link rel='icon' href='bin\favicon.png' type='image/x-icon'/>
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css' />
   <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.2/css/all.css' integrity='sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr' crossorigin='anonymous'>
+  <style>@import "https://fonts.googleapis.com/css?family=Roboto:400,700";html{font-family:Roboto,sans-serif;user-select:none}main{height:75vh;width:100vw;display:flex;flex-direction:column;justify-content:center;align-items:center}.gTasksLogo{height:150px}.gSignIn{margin-top:10px;height:40px;border-width:0;background:#4c8bf5;color:#737373;border-radius:5px;white-space:nowrap;box-shadow:1px 4px 5px 1px rgba(0,0,0,.1);transition:opacity 150ms;padding:0}.gSignIn:focus{outline:0}.gSignIn:active{opacity:.8}.gSignIn:hover{opacity:.8}.gSignInIcon{display:inline-block;vertical-align:middle;margin:8px 0 8px 8px;width:18px;height:18px;box-sizing:border-box}.gSignInText{color:#fff;display:inline-block;vertical-align:middle;padding:0 24px;font-size:14px;font-weight:700}footer{width:100vw;display:flex;justify-content:center;align-items:center;position:absolute;bottom:0;left:0}footer p a{color:#4c8bf5;text-decoration:none}</style>
 </head>
-<style>@import url(https://fonts.googleapis.com/css?family=Roboto:400,700);html{font-family:Roboto,sans-serif;user-select:none}main{height:75vh;width:100vw;display:flex;flex-direction:column;justify-content:center;align-items:center}.gTasksLogo{height:150px}.gSignIn{margin-top:10px;height:40px;border-width:0;background:#4c8bf5;color:#737373;border-radius:5px;white-space:nowrap;box-shadow:1px 4px 5px 1px rgba(0,0,0,.1);transition:opacity 150ms;padding:0}.gSignIn:focus{outline:0}.gSignIn:active{opacity:.8}.gSignIn:hover{opacity:.8}.gSignInIcon{display:inline-block;vertical-align:middle;margin:8px 0 8px 8px;width:18px;height:18px;box-sizing:border-box}.gSignInText{color:#fff;display:inline-block;vertical-align:middle;padding:0 24px;font-size:14px;font-weight:700}
-footer{
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  bottom: 0; left: 0;
-}
-footer p a{
-  color: #4c8bf5;
-  text-decoration: none;
-}
-</style>
 <body>
   <main>
     <img class='gTasksLogo' src='bin\img\logo.png'>
@@ -31,7 +18,7 @@ footer p a{
   <footer>
     <p>Built by <a href='http://ryncmrfrd.me'>Ryan Comerford</a></p>
   </footer>
-  <script src='bin\js\app.js'></script>
+  <script src='bin\js\app.min.js'></script>
   <script src='https://apis.google.com/js/api.js' onload='this.onload=function(){};humanTasks.init(function(){if(humanTasks.auth.isLoggedIn()){window.location.href="https://ryncmrfrd.me/tasks"}});' onreadystatechange='if(this.readyState==="complete"){this.onload()}'></script>
 </body>
 </html>
