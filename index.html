@@ -1,50 +1,80 @@
 <!DOCTYPE html>
+<html>
 <head>
-  <title>Google Tasks Web App</title>
-  <meta charset='utf-8' />
-  <meta name="google-site-verification" content="RaC2oR0K9ddINZenIO5-QUL_Zx46XdFiMiNqpAalO2Q"/>
-  <link rel='icon' href='bin\favicon.png' type='image/x-icon'/>
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css' />
-  <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.2/css/all.css' integrity='sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr' crossorigin='anonymous'>
-  <link rel='stylesheet' href='bin\css\style.css'>
+    <title>App | Tasks for Web</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+    <link rel="shortcut icon" href="img/favicon.png" type="image/png">
 </head>
 <body>
-  <div class='addTaskForm' style='display: none;'>
-    <h1 class='addTaskH1'>Add Task</h1>
-    <div class='addTaskTitle'>
-      <p>Task Title:</p>
-      <input type="text" id="formTaskTitle">
-    </div>
-    <div class='addTaskNotes'>
-      <p>Task Notes:</p>
-      <input type="text" id="formTaskDetails" disabled>
-    </div>
-    <button class='addTaskButton'>Create Task</button>
-  </div>
-  <header style='display: none;'>
-    <img src='bin\img\logo.png'>
-    <div class="logoutForm">
-      <button onclick="$('.logoutButtonWrapper').toggle()" class="user-icon" style="background: url('https://lh4.googleusercontent.com/-oDgL01NuMXQ/AAAAAAAAAAI/AAAAAAAAn0Q/ZnKuDKF76NU/s96-c/photo.jpg') center center / cover;"></button>
-      <div class='logoutButtonWrapper' style='display: none'>
-      <div class="logoutButtonArrow"></div>
-        <button onclick='humanTasks.auth.logout(function(){window.location.href="login"})' class="logoutButton">Log Out</button>
-      </div>
-    </div>
-  </header>
-  <nav class='taskListSelector' style='display: none;'>
-    <select id='task-list-title'>
-    </select>
-    <button class='addTask'>
-      <i class="fas fa-plus"></i>
-    </button>
-  </nav>
-  <div class='addTaskFormGrey' style='display: none;'></div>
-  <main id='task-wrapper' style='display: none;'>
 
-  </main>
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <script src='bin\js\tasksAPI.js'></script>
-  <script src='bin\js\app.js'></script>
-  <script src='https://apis.google.com/js/api.js' onload="this.onload=function(){};humanTasks.init(function(asd){console.log(asd);startApp()});" onreadystatechange="if(this.readyState==='complete'){this.onload()}"></script>
+    <nav class="level is-mobile" style='margin: 10px;'>
+        <div class="level-item level-left">
+            <div class="field">
+                <p class="control">
+                    <span class="icon"><i class="fab fa-google"></i></span>
+                    <span>Tasks App</span>
+                </p>
+            </div>
+        </div>
+        <div class="level-item level-right">
+            <div class="field">
+                <p class="control button is-info">
+                    <span class="icon"><i class="fas fa-user"></i></span>
+                    <span>Logout</span>
+                </p>
+            </div>
+        </div>
+    </nav>
+
+    <form class='columns is-centered' style="position: absolute; top: 25%; width: 100%;">
+        <div class='column is-half'>
+            <div class="field">
+                <label class="label">Task Name</label>
+                <div class="control">
+                    <input class="input" type="text" placeholder="Homework - I should do it.">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label has-text-grey-light">Task Description</label>
+                <div class="control">
+                    <input class="input is-disabled" type="text" placeholder="This is coming soon ..." disabled>
+                </div>
+            </div>
+            <div class="field">
+                <p class="control">
+                    <button class="button is-info">
+                        Add Task
+                    </button>
+                </p>
+            </div>
+        </div>
+
+    </form>
+
+    <section class='section columns is-mobile is-centered' style="padding-bottom: 25px;">
+        <div class="select">
+            <select id="task-list-title"></select>
+        </div>
+        <div class="field">
+                <p class="control button is-info">
+                    <span class="icon"><i class="fas fa-user"></i></span>
+                    <span>Logout</span>
+                </p>
+            </div>
+    </section>
+    <section class="section" id='task-wrapper' style="padding-top: 0;">
+
+    </section>
+
+    <script
+        src="https://code.jquery.com/jquery-3.4.0.min.js"
+        integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg="
+        crossorigin="anonymous"></script>
+    <script src="js/tasksapi.min.js"></script>
+    <script src="js/app.min.js"></script>
+    <script src='https://apis.google.com/js/api.js' onload="this.onload=function(){};humanTasks.init(function(){;startApp()});" onreadystatechange="if(this.readyState==='complete'){this.onload()}"></script>
 </body>
 </html>
