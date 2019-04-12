@@ -15,13 +15,13 @@
             <div class="field">
                 <p class="control">
                     <span class="icon"><i class="fab fa-google"></i></span>
-                    <span>Tasks App</span>
+                    <span class='title is-6 has-text-grey-dark'>Tasks App</span>
                 </p>
             </div>
         </div>
         <div class="level-item level-right">
             <div class="field">
-                <p class="control button is-info">
+                <p class="control button">
                     <span class="icon"><i class="fas fa-user"></i></span>
                     <span>Logout</span>
                 </p>
@@ -29,12 +29,12 @@
         </div>
     </nav>
 
-    <form class='columns is-centered' style="position: absolute; top: 25%; width: 100%;">
+    <form class='columns is-centered' style="position: absolute; top: 25%; width: 100%; z-index: 1; display: none;">
         <div class='column is-half'>
             <div class="field">
                 <label class="label">Task Name</label>
                 <div class="control">
-                    <input class="input" type="text" placeholder="Homework - I should do it.">
+                    <input id="formTaskTitle" class="input" type="text" placeholder="Homework, or anything alse ...">
                 </div>
             </div>
             <div class="field">
@@ -45,26 +45,31 @@
             </div>
             <div class="field">
                 <p class="control">
-                    <button class="button is-info">
+                    <button class="button is-info" id='createTaskButton'>
                         Add Task
                     </button>
                 </p>
             </div>
         </div>
-
     </form>
+    <div id='taskFormGrey' style='display: none; position: absolute; top: 0; left: 0; height: 100vh; width: 100vw; background: #000000; opacity: 0.6'></div>
 
-    <section class='section columns is-mobile is-centered' style="padding-bottom: 25px;">
-        <div class="select">
-            <select id="task-list-title"></select>
+    <section class="level is-mobile" style='margin: 35px 20px;'>
+        <div class="level-item level-left">
+            <div class="select">
+                <select id="task-list-title"></select>
+            </div>
         </div>
-        <div class="field">
+        <div class="level-item level-right">
+            <div class="field" id='addTaskButton'>
                 <p class="control button is-info">
-                    <span class="icon"><i class="fas fa-user"></i></span>
-                    <span>Logout</span>
+                    <span class="icon"><i class="fas fa-plus"></i></span>
+                    <span>Add Task</span>
                 </p>
             </div>
+        </div>
     </section>
+
     <section class="section" id='task-wrapper' style="padding-top: 0;">
 
     </section>
