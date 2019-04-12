@@ -29,16 +29,19 @@
         </div>
     </nav>
 
-    <form class='columns is-centered' style="position: absolute; top: 25%; width: 100%; z-index: 1; display: none;">
-        <div class='column is-half'>
+    <form class='columns is-centered' style="width: 50%; position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%); z-index: 5; display: none;">
+        <div class='column is-three-quarters'>
             <div class="field">
-                <label class="label">Task Name</label>
+                <label class="label has-text-white-bis">Task Name</label>
                 <div class="control">
                     <input id="formTaskTitle" class="input" type="text" placeholder="Homework, or anything alse ...">
                 </div>
             </div>
             <div class="field">
-                <label class="label has-text-grey-light">Task Description</label>
+                <label class="label has-text-white-bis">Task Description</label>
                 <div class="control">
                     <input class="input is-disabled" type="text" placeholder="This is coming soon ..." disabled>
                 </div>
@@ -52,7 +55,7 @@
             </div>
         </div>
     </form>
-    <div id='taskFormGrey' style='display: none; position: absolute; top: 0; left: 0; height: 100vh; width: 100vw; background: #000000; opacity: 0.6'></div>
+    <div id='taskFormGrey' style='display: none; position: absolute; top: 0; left: 0; height: 100vh; width: 100vw; background: #000000; opacity: 0.6; z-index: 3;'></div>
 
     <section class="level is-mobile" style='margin: 35px 20px;'>
         <div class="level-item level-left">
