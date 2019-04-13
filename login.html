@@ -8,24 +8,34 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
     <link rel="shortcut icon" href="img/favicon.png" type="image/png">
 </head>
-<body class="hero is-fullheight">
-    <div class="hero-body">
+<body>
+
+    <section class="section" style='position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%)'>
         <div class="container has-text-centered">
+            <img src="img/logo.png" width='550'>
             <h1 class="title">
-                <img src="img/logo.png" alt="Tasks for Web"  width="350">
+                The Google Tasks web app is dead.
             </h1>
-            <p class="subtitle">
-                <a class="button is-info is-medium">
+            <h2 class="subtitle is-4">
+                But I really liked it, the docs version isn't that great.
+            </h2>
+            <h2 class="subtitle">
+                <strong class='has-text-info'>So I built my own.</strong>
+            </h2>
+            <h1 class="subtitle">
+                <a class="button is-info is-medium" onclick="humanTasks.auth.login(function(){window.location.href='/'})">
                     <span class="icon"><i class="fab fa-google"></i></span>
                     <span>Sign In</span>
                 </a>
-            </p>
+            </h1>
         </div>
-    </div>
-    <div class="hero-foot">
+    </section>
+    <footer style='position: absolute; bottom: 0; left: 0; width: 100%;'>
         <div class="container has-text-centered">
             <a class="notification button is-text" href="https://ryncmrfrd.me" target="_blank" >Built by Ryan Comerford</a>
         </div>
-    </div>
+    </footer>
+    <script src='js/tasksapi.min.js'></script>
+    <script src='https://apis.google.com/js/api.js' onload='this.onload=function(){};humanTasks.init(function(){if(humanTasks.auth.isLoggedIn()){window.location.href="/"}});' onreadystatechange='if(this.readyState==="complete"){this.onload()}'></script>
 </body>
 </html>
