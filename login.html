@@ -1,41 +1,53 @@
 <!DOCTYPE html>
-<html>
 <head>
-    <title>Login | Tasks for Web</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
-    <link rel="shortcut icon" href="img/favicon.png" type="image/png">
+	<title>Login | Tasks for Web</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+	<link rel="shortcut icon" href="img/favicon.png" type="image/png">
 </head>
 <body>
-
-    <section class="section" style='position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%)'>
-        <div class="container has-text-centered">
-            <img src="img/logo.png" width='550'>
-            <h1 class="title">
-                The Google Tasks web app is dead.
-            </h1>
-            <h2 class="subtitle is-4">
-                But I really liked it, the docs version isn't that great.
-            </h2>
-            <h2 class="subtitle">
-                <strong class='has-text-info'>So I built my own.</strong>
-            </h2>
-            <h1 class="subtitle">
-                <a class="button is-info is-medium" onclick="humanTasks.auth.login(function(){window.location.href='/'})">
-                    <span class="icon"><i class="fab fa-google"></i></span>
-                    <span>Sign In</span>
-                </a>
-            </h1>
-        </div>
-    </section>
-    <footer style='position: absolute; bottom: 0; left: 0; width: 100%;'>
-        <div class="container has-text-centered">
-            <a class="notification button is-text" href="https://ryncmrfrd.me" target="_blank" >Built by Ryan Comerford</a>
-        </div>
-    </footer>
-    <script src='js/tasksapi.min.js'></script>
-    <script src='https://apis.google.com/js/api.js' onload='this.onload=function(){};humanTasks.init(function(){if(humanTasks.auth.isLoggedIn()){window.location.href="/"}});' onreadystatechange='if(this.readyState==="complete"){this.onload()}'></script>
+	<main style='position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); width: 100%;'>
+		<section class='columns is-centered is-vcentered'>
+			<div class='column is-3 has-text-right'>
+				<img src="img/logo.png" width='300'>
+			</div>
+			<div class='column is-one-third '>
+				<h1 class="title">
+					<span class="icon" style='font-size: 0.85em;'><i class="fab fa-google"></i></span>
+					Tasks for Web
+				</h1>
+				<h2 class="subtitle">
+                    Google recently killed their tasks web app <strong class='has-text-danger'><i class="fas fa-heart-broken"></i></strong>.<br>
+                    <strong class='has-text-warning'><i class="fas fa-laugh-beam"></i></strong> So I built an easy to use version for your Google Tasks needs.
+				</h2>
+			</div>
+		</section>
+		<section class='columns is-centered'>
+			<div class="column level is-mobile is-one-third">
+				<div class="level-item has-text-centered">
+					<a class='button is-dark is-outlined is-medium' href="https://github.com/ryncmrfrd/tasks" target="_blank" >
+					    <span class="icon"><i class="fab fa-github"></i></span>
+					    <span>Github Repository</span>
+					</a>
+				</div>
+				<div class="level-item has-text-centered">
+					<button class='button is-info is-large' onclick='humanTasks.auth.login(function(){window.location.href="/"})'>
+					    <span class="icon"><i class="fas fa-user"></i></span>
+					    <span>Login  </span>
+					</button>
+				</div>
+				<div class="level-item has-text-centered">
+					<a class="button is-dark is-outlined is-medium" href="https://ryncmrfrd.me" target="_blank" >
+					    <span class="icon"><i class="fas fa-code"></i></span>
+					    <span>My Other Projects</span>
+					</a>
+				</div>
+			</div>
+		</section>
+	</main>
+	<script src='js/tasksapi.min.js'></script>
+	<script src='https://apis.google.com/js/api.js' onload='this.onload=function(){};humanTasks.init(function(){if(humanTasks.auth.isLoggedIn()){window.location.href="/"}});' onreadystatechange='if(this.readyState==="complete"){this.onload()}'></script>
 </body>
 </html>
