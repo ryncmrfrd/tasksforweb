@@ -8,31 +8,40 @@
 	<link rel="shortcut icon" href="img/favicon.png" type="image/png">
 </head>
 <body>
-	<form class='card columns is-centered' style="width: 30%; position: absolute;top: 35%;left: 50%;transform: translate(-50%, -50%); z-index: 5; display: none;">
-		<div class='column'>
-			<div class="field">
-				<label class="label=">Task Name</label>
-				<div class="control">
-					<input id="formTaskTitle" class="input" type="text" placeholder="Homework, or anything alse ...">
-				</div>
-			</div>
-			<div class="field">
-				<label class="label">Task Description</label>
-				<div class="control">
-					<input class="input is-disabled" type="text" placeholder="Coming soon ..." disabled>
-				</div>
-			</div>
-			<div class="field">
-				<p class="control">
-					<button class="button is-info" id='createTaskButton'>Add Task</button>
-				</p>
-			</div>
-		</div>
-		<div class='column is-1'>
-			<button id="closeNewTaskForm" class="delete is-medium"></button>
-		</div>
+	<form class='card' style='width: 500px; position: absolute;top: 35%;left: 50%;transform: translate(-50%, -50%); z-index: 5; display: none;'>
+        <section class='card-header' style='box-shadow: none;'>
+            <div class='card-header-title'>
+                <h1 style='margin: 0 0 0 15px;' class='title' id='formTitleTask'>Add Task</h1>
+                <h1 style='margin: 0 0 0 15px;' class='title' id='formTitleList'>Add Task List</h1>
+            </div>
+            <div class='card-header-icon'>
+                <span id='formClose' class='delete is-medium'></span>
+            </div>
+        </section>
+        <section class='card-content' style='padding-top: 10px;'>
+            <div class="field">
+                <label class="label subtitle" id='formItemTitleTask'>Task Title</label>
+                <label class="label subtitle" id='formItemTitleList'>Task List Title</label>
+                <div class="control">
+                    <input id='formItemContentTask' class="input" type="text" placeholder="eg. Walk the dog at 5">
+                    <input id='formItemContentList' class="input" type="text" placeholder="eg. Homework">
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <button class='button is-info' id='formSubmitTask'>
+                        <span class='icon'><i class='fas fa-plus'></i></span>
+                        <span>Add Task</span>
+                    </button>
+                    <button class='button is-info' id='formSubmitList'>
+                        <span class='icon'><i class='fas fa-plus'></i></span>
+                        <span>Add Task List</span>
+                    </button>
+                </div>
+            </div>
+        </section>
     </form>
-    <a id='loader' class="button is-text is-loading" style='font-size: 4em;position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)'>Loading ...</a>
+	<a id='loader' class="button is-text is-loading" style='font-size: 4em;position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)'>Loading ...</a>
 	<main id='mainWrapper' style='display: none;'>
 		<nav class="level is-mobile" style='margin: 10px;'>
 			<div class="level-item level-left">
@@ -54,12 +63,23 @@
 		</nav>
 		<section class="level is-mobile" style='margin: 35px 20px;'>
 			<div class="level-item level-left">
-				<div class="select">
-					<select id="task-list-title"></select>
+				<div class="field has-addons">
+					<div class="control">
+						<div class="select">
+							<select id="task-list-title"></select>
+						</div>
+					</div>
+					<div class="control">
+						<button id="openFormList" class="control button is-info">
+							<span class="icon">
+								<i class="fas fa-plus"></i>
+							</span>
+						</button>
+					</div>
 				</div>
 			</div>
 			<div class="level-item level-right">
-				<div class="field" id='addTaskButton'>
+				<div class="field" id='openFormTask'>
 					<p class="control button is-info">
 						<span class="icon"><i class="fas fa-plus"></i></span>
 						<span>Add Task</span>
@@ -73,7 +93,8 @@
 	<script
 		src="https://code.jquery.com/jquery-3.4.0.min.js"
 		integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg="
-		crossorigin="anonymous"></script>
+		crossorigin="anonymous"
+	></script>
 	<script src="js/tasksapi.min.js"></script>
 	<script src="js/app.min.js"></script>
 	<script src='https://apis.google.com/js/api.js' onload="this.onload=function(){};humanTasks.init(function(){;startApp()});" onreadystatechange="if(this.readyState==='complete'){this.onload()}"></script>
