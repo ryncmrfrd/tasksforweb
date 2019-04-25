@@ -6,6 +6,8 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
 	<link rel="shortcut icon" href="img/favicon.png" type="image/png">
+	<link id='dark' rel="stylesheet" href="css/dark.css" disabled>
+	<link rel="stylesheet" href="css/switch.css">
 </head>
 <body>
 	<form class='card' style='width: 500px; position: absolute;top: 35%;left: 50%;transform: translate(-50%, -50%); z-index: 5; display: none;'>
@@ -48,7 +50,7 @@
 				<div class="field">
 					<p class="control">
 						<span class="icon"><i class="fab fa-google"></i></span>
-						<span class='title is-6 has-text-grey-dark'>Tasks App</span>
+						<span class='title is-6'>Tasks App</span>
 					</p>
 				</div>
 			</div>
@@ -89,7 +91,13 @@
 		</section>
 		<section class="section" id='task-wrapper' style="padding-top: 0;">
 		</section>
-    </main>
+	</main>
+	<section style='position: absolute; bottom: 10px; left: 10px;'>
+		<div class="field">
+			<input id="darkModeToggle" type="checkbox" class="switch is-rounded is-info">
+			<label for="darkModeToggle">Dark Mode</label>
+		</div>
+	</section>
 	<script
 		src="https://code.jquery.com/jquery-3.4.0.min.js"
 		integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg="
@@ -98,5 +106,25 @@
 	<script src="js/tasksapi.min.js"></script>
 	<script src="js/app.min.js"></script>
 	<script src='https://apis.google.com/js/api.js' onload="this.onload=function(){};humanTasks.init(function(){;startApp()});" onreadystatechange="if(this.readyState==='complete'){this.onload()}"></script>
+	<script>
+		if(localStorage.getItem('DarkMode') == 'true'){
+			$('#dark').prop('disabled', false)
+			$('#darkModeToggle').prop('checked', true)
+		}
+		else if(localStorage.getItem('DarkMode') == 'false'){
+			$('#dark').prop('disabled', true)
+			$('#darkModeToggle').prop('checked', false)
+		}
+		$('#darkModeToggle').change(function() {
+        	if(this.checked) {
+				$('link[rel~="stylesheet"]#dark').prop('disabled', false)
+				localStorage.setItem('DarkMode', 'true');
+			} else{
+				$('link[rel~="stylesheet"]#dark').prop('disabled', true)
+				localStorage.setItem('DarkMode', 'false');
+			}    
+    	});
+	</script>
+
 </body>
 </html>

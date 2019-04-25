@@ -6,6 +6,8 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
 	<link rel="shortcut icon" href="img/favicon.png" type="image/png">
+	<link id='dark' rel="stylesheet" href="css/dark.css" disabled>
+	<link rel="stylesheet" href="css/switch.css">
 </head>
 <body>
 	<main style='position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); width: 100%;'>
@@ -46,7 +48,37 @@
 			</div>
 		</section>
 	</main>
+	<section style='position: absolute; bottom: 10px; left: 10px;'>
+		<div class="field">
+			<input id="darkModeToggle" type="checkbox" class="switch is-rounded is-info">
+			<label for="darkModeToggle">Dark Mode</label>
+		</div>
+	</section>
+	<script
+		src="https://code.jquery.com/jquery-3.4.0.min.js"
+		integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg="
+		crossorigin="anonymous"
+	></script>
 	<script src='js/tasksapi.min.js'></script>
 	<script src='https://apis.google.com/js/api.js' onload='this.onload=function(){};humanTasks.init(function(){if(humanTasks.auth.isLoggedIn()){window.location.href="/"}});' onreadystatechange='if(this.readyState==="complete"){this.onload()}'></script>
+	<script>
+			if(localStorage.getItem('DarkMode') == 'true'){
+				$('#dark').prop('disabled', false)
+				$('#darkModeToggle').prop('checked', true)
+			}
+			else if(localStorage.getItem('DarkMode') == 'false'){
+				$('#dark').prop('disabled', true)
+				$('#darkModeToggle').prop('checked', false)
+			}
+			$('#darkModeToggle').change(function() {
+				if(this.checked) {
+					$('link[rel~="stylesheet"]#dark').prop('disabled', false)
+					localStorage.setItem('DarkMode', 'true');
+				} else{
+					$('link[rel~="stylesheet"]#dark').prop('disabled', true)
+					localStorage.setItem('DarkMode', 'false');
+				}    
+			});
+	</script>
 </body>
 </html>
