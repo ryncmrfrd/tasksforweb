@@ -139,6 +139,9 @@ function createForms(){ //loads and sets up the "add task" and "add tasklist" fo
 
     $('#formSubmitList').click(function(e){
         e.preventDefault();
+        tasks.taskLists.add($('#formItemContentList').val(), function(e) {
+            location.reload();
+        });
         location.reload();
     });
 
