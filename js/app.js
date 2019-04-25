@@ -17,8 +17,26 @@ var currentList; //global variable for the currently selected tasklist
 
 $('#formTitleTask, #formTitleList, #formItemTitleTask, #formItemTitleList, #formItemContentTask, #formItemContentList, #formSubmitTask, #formSubmitList').hide(); //hide all form elements. yes there are a lot.
 
+if(localStorage.getItem('DarkMode') == 'true'){ //auto dark mode code
+    $('#dark').prop('disabled', false)
+    $('#darkModeToggle').prop('checked', true)
+}
+else if(localStorage.getItem('DarkMode') == 'false'){
+    $('#dark').prop('disabled', true)
+    $('#darkModeToggle').prop('checked', false)
+}
+$('#darkModeToggle').change(function() { //dark mode toggle button
+    if(this.checked) {
+        $('link[rel~="stylesheet"]#dark').prop('disabled', false)
+        localStorage.setItem('DarkMode', 'true');
+    } else{
+        $('link[rel~="stylesheet"]#dark').prop('disabled', true)
+        localStorage.setItem('DarkMode', 'false');
+    }    
+});
+
 function startApp(){//function to be run on gapi completing loading
-    if(humanTasks.auth.isLoggedIn()){ //if user has is logged in during a previous session
+    if(tasks.auth.isLoggedIn()){ //if user has is logged in during a previous session
         
         loadDynamicContent(); //so that this function isn't the whole script
         createForms();
@@ -42,7 +60,7 @@ function loadDynamicContent(){
     
     // ------------------------------------------ API Request to get all user tasklists ------------------------------------------
 
-    humanTasks.taskLists.get(function(taskLists) {
+    tasks.taskLists.get(function(taskLists) {
         for(var i=0; i < taskLists.length; i++){
 
             $('#task-wrapper').append('<div class="container" id="'+taskLists[i].id+'"></div>'); //append different task wrap <section>s to <main>
@@ -52,7 +70,7 @@ function loadDynamicContent(){
 
             getTasksFromList(taskLists[i].id); //bodge for accessing "i" variable from nested for loops
             function getTasksFromList(x){
-                humanTasks.tasks.get(x,function(tasks){
+                tasks.tasks.get(x,function(tasks){
                     
                     // ------------------------------------------ Append tasks to container ------------------------------------------
                     
@@ -85,7 +103,7 @@ function loadDynamicContent(){
                         if(taskTitleEdits != this.innerText){
                             var taskID = this.parentNode.parentNode.parentNode.id;
                             var params = {'title':this.innerText}
-                            humanTasks.tasks.edit(currentList, taskID, params);
+                            tasks.tasks.edit(currentList, taskID, params);
                         }
                     });
 
@@ -105,7 +123,7 @@ function createForms(){ //loads and sets up the "add task" and "add tasklist" fo
     $('#formSubmitTask').click(function(e){ //on click form submit button
         e.preventDefault();
         var t = {title: $('#formItemContentTask').val()};
-        humanTasks.tasks.add(currentList, t, function(e) {
+        tasks.tasks.add(currentList, t, function(e) {
             $("#task-wrapper div#" + currentList).prepend('<article class="message" id="' + e.result.id + '"><div class="message-body level"><div class="level-item level-left"><button onclick="completeTask(this)" class="button is-rounded is-success" style="margin-right: 20px;border-radius: 50%; width: 36px;"><i class="fas fa-check"></i></button><h1 id="task-title" class="subtitle is-4" contenteditable="true">' + e.result.title + '</h1></div><div class="level-item level-right"><button onclick="deleteTask(this)" class="delete is-medium"></button></div></div></article>')
         });
         $('#formClose').click();
@@ -121,10 +139,6 @@ function createForms(){ //loads and sets up the "add task" and "add tasklist" fo
 
     $('#formSubmitList').click(function(e){
         e.preventDefault();
-        humanTasks.taskLists.add($('#formItemContentList').val(), function(e) {
-            $("#task-wrapper div#" + currentList).prepend('<article class="message" id="' + e.result.id + '"><div class="message-body level"><div class="level-item level-left"><button onclick="completeTask(this)" class="button is-rounded is-success" style="margin-right: 20px;border-radius: 50%; width: 36px;"><i class="fas fa-check"></i></button><h1 id="task-title" class="subtitle is-4" contenteditable="true">' + e.result.title + '</h1></div><div class="level-item level-right"><button onclick="deleteTask(this)" class="delete is-medium"></button></div></div></article>')
-        });
-        $('#formClose').click();
         location.reload();
     });
 
@@ -133,6 +147,11 @@ function createForms(){ //loads and sets up the "add task" and "add tasklist" fo
         $('form').fadeIn();
         $('main').css('filter', 'blur(5px)');
         $('#formTitleList, #formItemTitleList, #formItemContentList, #formSubmitList').show();
+    });
+
+    $('#deleteTasklist').click(function(){ // delete currently selected tasklist
+        tasks.taskLists.remove(currentList);
+        location.reload();
     });
 
     // ------------------------------------------ All forms ------------------------------------------
@@ -145,12 +164,12 @@ function createForms(){ //loads and sets up the "add task" and "add tasklist" fo
 }
 
 function completeTask(x){ //set task to completed
-    humanTasks.tasks.complete(currentList, x.parentNode.parentNode.parentNode.id);
+    tasks.tasks.complete(currentList, x.parentNode.parentNode.parentNode.id);
     $('#'+x.parentNode.parentNode.parentNode.id).fadeOut();
 }
 
 function deleteTask(x){ //set task to deleted
-    humanTasks.tasks.edit(currentList, x.parentNode.parentNode.parentNode.id, {'deleted':'true'})
+    tasks.tasks.edit(currentList, x.parentNode.parentNode.parentNode.id, {'deleted':'true'})
     $('#'+x.parentNode.parentNode.parentNode.id).animate({width:'toggle'},350, function(){ //funky animations
         $('#'+x.parentNode.parentNode.parentNode.id).hide();
     });

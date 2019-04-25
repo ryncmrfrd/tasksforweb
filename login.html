@@ -35,7 +35,7 @@
 					</a>
 				</div>
 				<div class="level-item has-text-centered">
-					<button class='button is-info is-large' onclick='humanTasks.auth.login(function(){window.location.href="/"})'>
+					<button class='button is-info is-large' onclick='tasks.auth.login(function(){window.location.href="/"})'>
 					    <span class="icon"><i class="fas fa-user"></i></span>
 					    <span>Login  </span>
 					</button>
@@ -55,31 +55,9 @@
 			<label for="darkModeToggle">Dark Mode</label>
 		</div>
 	</section>
-	<script
-		src="https://code.jquery.com/jquery-3.4.0.min.js"
-		integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg="
-		crossorigin="anonymous"
-	></script>
+	<script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
 	<script src='js/tasksapi.min.js'></script>
-	<script src='https://apis.google.com/js/api.js' onload='this.onload=function(){};humanTasks.init(function(){if(humanTasks.auth.isLoggedIn()){window.location.href="/"}});' onreadystatechange='if(this.readyState==="complete"){this.onload()}'></script>
-	<script>
-			if(localStorage.getItem('DarkMode') == 'true'){
-				$('#dark').prop('disabled', false)
-				$('#darkModeToggle').prop('checked', true)
-			}
-			else if(localStorage.getItem('DarkMode') == 'false'){
-				$('#dark').prop('disabled', true)
-				$('#darkModeToggle').prop('checked', false)
-			}
-			$('#darkModeToggle').change(function() {
-				if(this.checked) {
-					$('link[rel~="stylesheet"]#dark').prop('disabled', false)
-					localStorage.setItem('DarkMode', 'true');
-				} else{
-					$('link[rel~="stylesheet"]#dark').prop('disabled', true)
-					localStorage.setItem('DarkMode', 'false');
-				}    
-			});
-	</script>
+	<script src='https://apis.google.com/js/api.js' onload='this.onload=function(){};tasks.init(function(){if(tasks.auth.isLoggedIn()){window.location.href="/"}});' onreadystatechange='if(this.readyState==="complete"){this.onload()}'></script>
+	<script>"true"==localStorage.getItem("DarkMode")?($("#dark").prop("disabled",!1),$("#darkModeToggle").prop("checked",!0)):"false"==localStorage.getItem("DarkMode")&&($("#dark").prop("disabled",!0),$("#darkModeToggle").prop("checked",!1)),$("#darkModeToggle").change(function(){this.checked?($('link[rel~="stylesheet"]#dark').prop("disabled",!1),localStorage.setItem("DarkMode","true")):($('link[rel~="stylesheet"]#dark').prop("disabled",!0),localStorage.setItem("DarkMode","false"))});</script>
 </body>
 </html>

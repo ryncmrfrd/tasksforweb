@@ -57,7 +57,7 @@
 			</div>
 			<div class="level-item level-right">
 				<div class="field">
-					<p class="control button" onclick='humanTasks.auth.logout(function(){window.location.href="login"})'>
+					<p class="control button" onclick='tasks.auth.logout(function(){window.location.href="login"})'>
 						<span class="icon"><i class="fas fa-user"></i></span>
 						<span>Logout</span>
 					</p>
@@ -68,14 +68,21 @@
 			<div class="level-item level-left">
 				<div class="field has-addons">
 					<div class="control">
+						<button id="openFormList" class="control button is-info">
+							<span class="icon">
+								<i class="fas fa-plus"></i>
+							</span>
+						</button>
+					</div>
+					<div class="control">
 						<div class="select">
 							<select id="task-list-title"></select>
 						</div>
 					</div>
 					<div class="control">
-						<button id="openFormList" class="control button is-info">
+						<button id="deleteTasklist" class="control button is-danger">
 							<span class="icon">
-								<i class="fas fa-plus"></i>
+								<i class="fas fa-times"></i>
 							</span>
 						</button>
 					</div>
@@ -99,33 +106,9 @@
 			<label for="darkModeToggle">Dark Mode</label>
 		</div>
 	</section>
-	<script
-		src="https://code.jquery.com/jquery-3.4.0.min.js"
-		integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg="
-		crossorigin="anonymous"
-	></script>
+	<script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
 	<script src="js/tasksapi.min.js"></script>
 	<script src="js/app.min.js"></script>
-	<script src='https://apis.google.com/js/api.js' onload="this.onload=function(){};humanTasks.init(function(){;startApp()});" onreadystatechange="if(this.readyState==='complete'){this.onload()}"></script>
-	<script>
-		if(localStorage.getItem('DarkMode') == 'true'){
-			$('#dark').prop('disabled', false)
-			$('#darkModeToggle').prop('checked', true)
-		}
-		else if(localStorage.getItem('DarkMode') == 'false'){
-			$('#dark').prop('disabled', true)
-			$('#darkModeToggle').prop('checked', false)
-		}
-		$('#darkModeToggle').change(function() {
-        	if(this.checked) {
-				$('link[rel~="stylesheet"]#dark').prop('disabled', false)
-				localStorage.setItem('DarkMode', 'true');
-			} else{
-				$('link[rel~="stylesheet"]#dark').prop('disabled', true)
-				localStorage.setItem('DarkMode', 'false');
-			}    
-    	});
-	</script>
-
+	<script src='https://apis.google.com/js/api.js' onload="this.onload=function(){};tasks.init(function(){;startApp()});" onreadystatechange="if(this.readyState==='complete'){this.onload()}"></script>
 </body>
 </html>
